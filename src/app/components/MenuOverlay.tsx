@@ -1,5 +1,6 @@
 import React from "react";
 import NavLink from "./NavLink";
+import Link from "next/link";
 
 type NavLinkProps = {
     links:Array<Link>;
