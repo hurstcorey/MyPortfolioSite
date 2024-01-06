@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "MyPortolioHomeVSCodeIDESonarCloud",
+        "projectKey": "hurstcorey_MyPortfolioSite"
+    }
+}
