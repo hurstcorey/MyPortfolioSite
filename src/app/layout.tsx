@@ -9,7 +9,7 @@ export const metadata = {
   description: 'Welcome to my portfolio',
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
