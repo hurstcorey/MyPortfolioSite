@@ -63,14 +63,14 @@ const EmailSection = () => {
           </Link>
         </div>
       </div>
-      <div>
+      {/* Todo Fix async email sending */}
+      {/* <div>
         {emailSubmitted ? (
           <p className="text-green-500 text-sm mt-2">
             Email sent successfully!
           </p>
         ) : (
-          // Todo Fix async email sending
-          <form className="flex flex-col" //onSubmit={handleSubmit}
+          <form className="flex flex-col" onSubmit={handleSubmit}
           >
             <div className="mb-6">
               <label
@@ -126,7 +126,7 @@ const EmailSection = () => {
             </button>
           </form>
         )}
-      </div>
+      </div> */}
     </section>
   );
 };
