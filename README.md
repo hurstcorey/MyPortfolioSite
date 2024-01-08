@@ -4,9 +4,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This is a portfolio website built with Next.js and Tailwind CSS. It showcases your skills, projects, and achievements in an elegant and responsive design.
 
+I used a tutorial created by [webdecoded](https://www.youtube.com/@webdecoded) to learn the basics of this site. 
+If you use the tutorial please make sure you pay the kindness forward. [Buy webdecoded5 a coffee](buymeacoff.ee/webdecoded5)
+
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/judygab/portfolio-website.git`
+    or mine.
 2. Navigate to the project directory: `cd portfolio-website`
 3. Install the dependencies: `npm install`
 
