@@ -7,34 +7,34 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
+    title: "This React Portfolio Website",
     description: "Project 1 description",
     image: "/images/projects/1.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/hurstcorey/MyPortfolioSite",
     previewUrl: "/",
   },
   {
     id: 2,
-    title: "Fate RRPG Application",
+    title: "Fate RRPG React Native App",
     description: "Project 2 description",
     image: "/images/projects/2.png",
-    tag: ["All", "Web"],
+    tag: ["All","Mobile","Web"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 3,
     title: "Blog Website",
-    description: "Project 3 description",
-    image: "/images/projects/3.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    description: "My Personal Blog where I talk about my life, experiences, and interest",
+    image: "/images/projects/Coreyblog.png",
+    tag: ["All","blog","Web"],
+    gitUrl: "https://support.google.com/blogger/answer/1623800?hl=en",
+    previewUrl: "https://blog.cohurst.co/",
   },
   {
     id: 4,
-    title: "MyAssist Application",
+    title: "MyAssistant PWA App",
     description: "Project 4 description",
     image: "/images/projects/4.png",
     tag: ["All", "Mobile"],
@@ -74,13 +74,28 @@ const ProjectsSection = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
+          name="Art"
+          isSelected={tag === "Art"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Mobile Apps"
+          isSelected={tag === "Mobile"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Streaming"
+          isSelected={tag === "Streaming"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Web Apps"
           isSelected={tag === "Web"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
+          name="Writing"
+          isSelected={tag === "Writing"}
         />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
