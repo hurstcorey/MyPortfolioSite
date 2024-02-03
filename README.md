@@ -1,11 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 # Portfolio Website
 
 This is a portfolio website built with Next.js and Tailwind CSS. It showcases your skills, projects, and achievements in an elegant and responsive design.
 
-I used a tutorial created by [webdecoded](https://www.youtube.com/@webdecoded) to learn the basics of this site. 
+I used a tutorial created by [webdecoded](https://www.youtube.com/@webdecoded) to learn the basics of this site.
 If you use the tutorial please make sure you pay the kindness forward. [Buy webdecoded5 a coffee](buymeacoff.ee/webdecoded5)
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Installation
 
