@@ -15,21 +15,6 @@
       "auth": {
         "myportfoliosite796b9a62": {}
       },
-      "function": {
-        "myportfoliosite796b9a62DefineAuthChallenge": {},
-        "myportfoliosite796b9a62CreateAuthChallenge": {},
-        "myportfoliosite796b9a62VerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": "6Ld-EWQpAAAAAAdqluNjrM5ELbCvIsgOv5ms0imJ"
-        },
-        "myportfoliosite796b9a62CustomMessage": {
-          "REDIRECTURL": "https://cohurst.co",
-          "EMAILSUBJECT": "Welcome to my personal Site! Please confirm your email to access any of my exclusive content",
-          "EMAILMESSAGE": "Welcome to my personal Site! Please confirm your email to access any of my exclusive content"
-        },
-        "myportfoliosite796b9a62PostConfirmation": {
-          "GROUP": "MyPortfolioSiteUsers"
-        }
-      },
       "storage": {
         "myportfoliosite41753c49": {
           "bucketName": "my-knowledge-us-east-2",

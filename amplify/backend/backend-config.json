@@ -2,55 +2,9 @@
   "auth": {
     "myportfoliosite796b9a62": {
       "customAuth": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62DefineAuthChallenge",
-          "triggerProvider": "Cognito"
-        },
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62CreateAuthChallenge",
-          "triggerProvider": "Cognito"
-        },
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62VerifyAuthChallengeResponse",
-          "triggerProvider": "Cognito"
-        },
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62CustomMessage",
-          "triggerProvider": "Cognito"
-        },
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62PostConfirmation",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
+        "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
           "SMS"
         ],
@@ -76,8 +30,7 @@
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
-            "AppClientID",
-            "IdentityPoolId"
+            "AppClientID"
           ],
           "category": "auth",
           "resourceName": "myportfoliosite796b9a62"
@@ -87,74 +40,8 @@
       "service": "Cognito-UserPool-Groups"
     }
   },
-  "function": {
-    "myportfoliosite796b9a62CreateAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "myportfoliosite796b9a62CustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "myportfoliosite796b9a62DefineAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "myportfoliosite796b9a62PostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "myportfoliosite796b9a62VerifyAuthChallengeResponse": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
+  "function": {},
   "parameters": {
-    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_EMAILMESSAGE": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_EMAILSUBJECT": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_REDIRECTURL": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_myportfoliosite796b9a62PostConfirmation_GROUP": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62PostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_myportfoliosite796b9a62VerifyAuthChallengeResponse_RECAPTCHASECRET": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myportfoliosite796b9a62VerifyAuthChallengeResponse"
-        }
-      ]
-    },
     "AMPLIFY_storage_myportfoliosite41753c49_bucketName": {
       "usedBy": [
         {
