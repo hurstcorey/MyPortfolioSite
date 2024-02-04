@@ -158,11 +158,10 @@ dist
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/extensions.json
 
 # Local History for Visual Studio Code
 .history/
@@ -241,3 +240,4 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
