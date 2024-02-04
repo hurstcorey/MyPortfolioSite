@@ -10,6 +10,21 @@
       "StackName": "amplify-myportfoliosite-dev-210242",
       "StackId": "arn:aws:cloudformation:us-east-2:001559332385:stack/amplify-myportfoliosite-dev-210242/7d61d050-c301-11ee-953a-06a5c4694d39",
       "AmplifyAppId": "d1ymq9pl2nw308"
+    },
+    "categories": {
+      "auth": {
+        "myportfoliosited3d913c7": {}
+      },
+      "function": {
+        "myportfoliosited3d913c7CustomMessage": {
+          "REDIRECTURL": "https://cohurst.co",
+          "EMAILSUBJECT": "Welcome to Corey's Portfolio Site",
+          "EMAILMESSAGE": "Please confirm your email to gain access to my personal content"
+        },
+        "myportfoliosited3d913c7PostConfirmation": {
+          "GROUP": "PortfolioUsers"
+        }
+      }
     }
   }
 }
