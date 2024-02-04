@@ -32,8 +32,8 @@
     "sharedId": "796b9a62",
     "resourceName": "myportfoliosite796b9a62",
     "authSelections": "userPoolOnly",
-    "useDefault": "manual",
-    "hostedUI": true,
+    "useDefault": "default",
+    "hostedUI": false,
     "usernameAttributes": [
       "email"
     ],
@@ -65,10 +65,6 @@
     },
     "userPoolGroups": true,
     "adminQueries": false,
-    "hostedUIDomainName": "login",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://cohurst.co/\"],\"LogoutURLs\":[\"https://cohurst.co/\"]}",
     "authProviders": []
   }
 }
