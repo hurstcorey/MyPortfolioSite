@@ -34,8 +34,8 @@
     "sharedId": "796b9a62",
     "resourceName": "myportfoliosite796b9a62",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
+    "useDefault": "default",
+    "hostedUI": false,
     "usernameAttributes": [
       "email"
     ],
@@ -56,9 +56,6 @@
         "add-to-group"
       ]
     },
-    "hostedUIDomainName": "login",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
     "userPoolGroupList": [
       "PortfolioUsers"
     ],
@@ -133,6 +130,6 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://churst.co/login/\"],\"LogoutURLs\":[\"https://churst.co/logout/\"]}"
+    "authProviders": []
   }
 }
