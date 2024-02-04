@@ -1,8 +1,3 @@
 {
-  "storage": {
-    "myfeedback": {
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
-    }
-  }
+  "storage": {}
 }
