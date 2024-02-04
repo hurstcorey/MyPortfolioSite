@@ -1,0 +1,170 @@
+{
+  "auth": {
+    "myportfoliosite796b9a62": {
+      "customAuth": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62DefineAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62CreateAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62VerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62CustomMessage",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62PostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "myportfoliosite796b9a62CreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "myportfoliosite796b9a62CustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "myportfoliosite796b9a62DefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "myportfoliosite796b9a62PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "myportfoliosite796b9a62VerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_EMAILMESSAGE": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62CustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_EMAILSUBJECT": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62CustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosite796b9a62CustomMessage_REDIRECTURL": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62CustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosite796b9a62PostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosite796b9a62VerifyAuthChallengeResponse_RECAPTCHASECRET": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosite796b9a62VerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_storage_myportfoliosite41753c49_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "myportfoliosite41753c49"
+        }
+      ]
+    },
+    "AMPLIFY_storage_myportfoliosite41753c49_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "myportfoliosite41753c49"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "myportfoliosite41753c49": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
+    }
+  }
+}
