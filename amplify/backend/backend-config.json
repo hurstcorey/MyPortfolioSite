@@ -1,51 +1,5 @@
 {
-  "auth": {
-    "myportfoliosited3d913c7": {
-      "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosited3d913c7CustomMessage",
-          "triggerProvider": "Cognito"
-        },
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "myportfoliosited3d913c7PostConfirmation",
-          "triggerProvider": "Cognito"
-        }
-      ],
-      "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito"
-    }
-  },
+  "auth": {},
   "function": {
     "myportfoliosited3d913c7CustomMessage": {
       "build": true,
@@ -83,7 +37,39 @@
         }
       ]
     },
+    "AMPLIFY_function_myportfoliosited3d913c7CustomMessage_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosited3d913c7CustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosited3d913c7CustomMessage_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosited3d913c7CustomMessage"
+        }
+      ]
+    },
     "AMPLIFY_function_myportfoliosited3d913c7PostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosited3d913c7PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosited3d913c7PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myportfoliosited3d913c7PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_myportfoliosited3d913c7PostConfirmation_s3Key": {
       "usedBy": [
         {
           "category": "function",
