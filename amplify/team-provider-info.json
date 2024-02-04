@@ -1,0 +1,41 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myportfoliosite-dev-181049-authRole",
+      "UnauthRoleArn": "arn:aws:iam::001559332385:role/amplify-myportfoliosite-dev-181049-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::001559332385:role/amplify-myportfoliosite-dev-181049-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-myportfoliosite-dev-181049-deployment",
+      "UnauthRoleName": "amplify-myportfoliosite-dev-181049-unauthRole",
+      "StackName": "amplify-myportfoliosite-dev-181049",
+      "StackId": "arn:aws:cloudformation:us-east-2:001559332385:stack/amplify-myportfoliosite-dev-181049/7a71f040-c2e9-11ee-9602-02e798ccdaf1",
+      "AmplifyAppId": "d1nu2zpnh3hhpf"
+    },
+    "categories": {
+      "auth": {
+        "myportfoliosite796b9a62": {}
+      },
+      "function": {
+        "myportfoliosite796b9a62DefineAuthChallenge": {},
+        "myportfoliosite796b9a62CreateAuthChallenge": {},
+        "myportfoliosite796b9a62VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "6Ld-EWQpAAAAAAdqluNjrM5ELbCvIsgOv5ms0imJ"
+        },
+        "myportfoliosite796b9a62CustomMessage": {
+          "REDIRECTURL": "https://cohurst.co",
+          "EMAILSUBJECT": "Welcome to my personal Site! Please confirm your email to access any of my exclusive content",
+          "EMAILMESSAGE": "Welcome to my personal Site! Please confirm your email to access any of my exclusive content"
+        },
+        "myportfoliosite796b9a62PostConfirmation": {
+          "GROUP": "MyPortfolioSiteUsers"
+        }
+      },
+      "storage": {
+        "myportfoliosite41753c49": {
+          "bucketName": "my-knowledge-us-east-2",
+          "region": "us-east-2"
+        }
+      }
+    }
+  }
+}
