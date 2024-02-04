@@ -12,23 +12,8 @@
       "AmplifyAppId": "d1ymq9pl2nw308"
     },
     "categories": {
-      "function": {
-        "myportfoliosited3d913c7CustomMessage": {
-          "REDIRECTURL": "https://cohurst.co",
-          "EMAILSUBJECT": "Welcome to Corey's Portfolio Site",
-          "EMAILMESSAGE": "Please confirm your email to gain access to my personal content",
-          "deploymentBucketName": "amplify-myportfoliosite-dev-210242-deployment",
-          "s3Key": "amplify-builds/myportfoliosited3d913c7CustomMessage-505371696f756e345537-build.zip"
-        },
-        "myportfoliosited3d913c7PostConfirmation": {
-          "GROUP": "PortfolioUsers",
-          "deploymentBucketName": "amplify-myportfoliosite-dev-210242-deployment",
-          "s3Key": "amplify-builds/myportfoliosited3d913c7PostConfirmation-304f77374b6c427a724c-build.zip"
-        }
-      },
       "storage": {
-        "myfeedback": {},
-        "PortfolioSiteAuth": {}
+        "myfeedback": {}
       }
     }
   }
