@@ -1,6 +1,4 @@
 {
-  "auth": {},
-  "function": {},
   "storage": {
     "myfeedback": {
       "providerPlugin": "awscloudformation",
