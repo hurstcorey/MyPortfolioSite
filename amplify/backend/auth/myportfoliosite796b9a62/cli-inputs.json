@@ -1,14 +1,12 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "myportfoliosite796b9a62_identitypool_796b9a62",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "myport796b9a62",
     "userPoolName": "myportfoliosite796b9a62_userpool_796b9a62",
     "autoVerifiedAttributes": [
       "email"
     ],
-    "mfaConfiguration": "OFF",
+    "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
       "SMS Text Message"
     ],
@@ -33,29 +31,13 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "796b9a62",
     "resourceName": "myportfoliosite796b9a62",
-    "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
-    "hostedUI": false,
+    "authSelections": "userPoolOnly",
+    "useDefault": "manual",
+    "hostedUI": true,
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {
-      "DefineAuthChallenge": [
-        "captcha-define-challenge"
-      ],
-      "CreateAuthChallenge": [
-        "captcha-create-challenge"
-      ],
-      "VerifyAuthChallengeResponse": [
-        "captcha-verify"
-      ],
-      "CustomMessage": [
-        "verification-link"
-      ],
-      "PostConfirmation": [
-        "add-to-group"
-      ]
-    },
+    "triggers": {},
     "userPoolGroupList": [
       "PortfolioUsers"
     ],
@@ -76,60 +58,17 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [
-      {
-        "category": "function",
-        "resourceName": "myportfoliosite796b9a62DefineAuthChallenge",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      },
-      {
-        "category": "function",
-        "resourceName": "myportfoliosite796b9a62CreateAuthChallenge",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      },
-      {
-        "category": "function",
-        "resourceName": "myportfoliosite796b9a62VerifyAuthChallengeResponse",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      },
-      {
-        "category": "function",
-        "resourceName": "myportfoliosite796b9a62CustomMessage",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      },
-      {
-        "category": "function",
-        "resourceName": "myportfoliosite796b9a62PostConfirmation",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      }
-    ],
-    "permissions": [
-      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
-    ],
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"DefineAuthChallenge\",\n    \"lambdaFunctionName\": \"myportfoliosite796b9a62DefineAuthChallenge\"\n  },\n  {\n    \"triggerType\": \"CreateAuthChallenge\",\n    \"lambdaFunctionName\": \"myportfoliosite796b9a62CreateAuthChallenge\"\n  },\n  {\n    \"triggerType\": \"VerifyAuthChallengeResponse\",\n    \"lambdaFunctionName\": \"myportfoliosite796b9a62VerifyAuthChallengeResponse\"\n  },\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"myportfoliosite796b9a62CustomMessage\"\n  },\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"myportfoliosite796b9a62PostConfirmation\"\n  }\n]",
+    "dependsOn": [],
+    "permissions": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "hostedUIDomainName": "login",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://cohurst.co/\"],\"LogoutURLs\":[\"https://cohurst.co/\"]}",
     "authProviders": []
   }
 }
