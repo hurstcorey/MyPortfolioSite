@@ -9,14 +9,14 @@ const TAB_DATA = [
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-        <li>Cloud</li>
-        <li>Microservice</li>
+        <li>Cloud Hosting</li>
+        <li>React & Next.js</li>
         <li>Serverless</li>
-        <li>Java Springboot</li>
-        <li>Next.js</li>
         <li>TypeScript</li>
-        <li>SQL DB(s)</li>
-        <li>NoSQL(s)</li>
+        <li>Java Springboot</li>
+        <li>API(s) and Microservices</li>
+        <li>SQL & Graph DB(s), NoSQL(s)</li>
+        
       </ul>
     ),
   },
