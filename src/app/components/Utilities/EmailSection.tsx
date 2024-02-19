@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import GithubIcon from "../../../../public/github-icon.svg";
-import LinkedinIcon from "../../../../public/linkedin-icon.svg";
+import GithubIcon from "../../../../public/images/icons/icons8-github-64.png";
+import LinkedinIcon from "../../../../public/images/icons/icons8-linkedin-64.png";
+import FacebookIcon from "../../../../public/images/icons/icons8-facebook-64.png" 
+import instagramIcon from "../../../../public/images/icons/icons8-instagram-64.png";
+import TwitchIcon from "../../../../public/images/icons/icons8-twitch-64.png";
+import SnapchatIcon from "../../../../public/images/icons/icons8-snapchat-squared-64.png";
+import YoutubeIcon from "../../../../public/images/icons/icons8-youtube-64.png";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -55,11 +60,26 @@ const EmailSection = () => {
           try my best to get back to you!
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="github.com">
+          <Link href="https://github.com/hurstcorey" target="_blank">
             <Image src={GithubIcon} alt="Github Icon" />
           </Link>
-          <Link href="linkedin.com">
+          <Link href="https://www.linkedin.com/in/coreyhurst/" target="_blank">
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
+          </Link>
+          <Link href="https://www.facebook.com/profile.php?id=100092553866277" target="_blank">
+            <Image src={FacebookIcon} alt="Facebook Icon" />
+          </Link>
+          <Link href="https://www.instagram.com/coreyhurst4/" target="_blank">
+            <Image src={instagramIcon} alt="Instagram Icon" />
+          </Link>
+          <Link href="https://www.snapchat.com/add/hurstco88" target="_blank">
+            <Image src={SnapchatIcon} alt="Snapchat Icon" />
+          </Link>
+          <Link href="https://www.twitch.tv/cleestream" target="_blank">
+            <Image src={TwitchIcon} alt="Twitch Icon" />
+          </Link>
+          <Link href="https://www.youtube.com/channel/UCV09IdFQf57VxLMlubY6HiQ" target="_blank">
+            <Image src={YoutubeIcon} alt="Youtube Icon" />
           </Link>
         </div>
       </div>
