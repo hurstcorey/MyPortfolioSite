@@ -1,26 +1,21 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
-import NavLink from "./NavLink";import Image from "next/image";
+import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 
 const navLinks = [
   {
-    title: "About",
-    path: "#about",
-  },
-  {
     title: "My Story",
     path: "#mystory",
   },
   {
-    title: "Software Engineer",
-    path: "#softwareengineer",
+    title: "Engineer",
+    path: "#engineer",
   },
   {
-    title: "Health Advocate",
-    path: "#health",
+    title: "Writer",
+    path: "#writer",
   },
   {
     title: "Gamer",
@@ -49,13 +44,17 @@ const Navbar = () => {
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (
             <button
-              onClick={() => setNavbarOpen(true)}
+              type="button"
+              title="Toggle Menu"
+              onClick={() => setNavbarOpen(!navbarOpen)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
             <button
+              type="button"
+              title="Toggle Menu"
               onClick={() => setNavbarOpen(false)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
             >
@@ -65,25 +64,12 @@ const Navbar = () => {
         </div>
         <div className="menu hidden md:block md:w-auto" id="navbar">
           <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <li key={link.path}>
                 <NavLink href={link.path} title={link.title} />
               </li>
             ))}
           </ul>
-            <span>
-            <Link
-            href={"/"}
-            className="text-2xl md:text-5xl text-white font-semibold"
-          >
-            <Image className="rounded-full absolute transform top-1 left-1"
-            src="/SteamLogoSmall.png"
-            alt="Stream Logo"
-            width={50}
-            height={0}
-            />
-          </Link>
-          </span>
         </div>
       </div>
       {navbarOpen ? <MenuOverlay links={navLinks} /> : null}

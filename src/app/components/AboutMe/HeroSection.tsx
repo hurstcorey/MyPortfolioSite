@@ -21,6 +21,7 @@ const HeroSection = () => {
             </span>
             <br></br>
             <TypeAnimation
+              className="inline-block, font-mono"
               sequence={[
                 "Corey Hurst...",
                 1000,
