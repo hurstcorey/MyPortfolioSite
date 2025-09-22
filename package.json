@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/backend": "^1.0.0",
+    "@aws-amplify/backend-cli": "^1.0.0",
     "@heroicons/react": "^2.0.18",
     "autoprefixer": "10.4.15",
+    "aws-amplify": "^6.0.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.15",
     "framer-motion": "^10.16.1",
+    "my_portfolio_site": "file:",
     "next": "^14.1.1",
     "postcss": "^8.4.32",
     "react": "18.2.0",

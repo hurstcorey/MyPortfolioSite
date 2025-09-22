@@ -1,4 +1,5 @@
 import './globals.css'
+import './amplify-config'
 import { Inter } from 'next/font/google'
 import React, { ReactNode } from 'react';
 
