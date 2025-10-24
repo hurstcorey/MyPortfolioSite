@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import TabButton from "../TabButton";
 
 const TAB_DATA = [
@@ -36,6 +37,8 @@ const TAB_DATA = [
     content: (
       <ul className="list-disc pl-2">
         <li>AWS Cloud Practitioner</li>
+        <li><Link href="https://www.credly.com/badges/94f00762-be7c-4f89-8252-5765f9272067/public_url">GenAI Application Developer</Link></li>
+        <li>Certification 3 (Update with your actual certification)</li>
       </ul>
     ),
   },
