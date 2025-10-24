@@ -9,22 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-amplify/backend": "^1.0.0",
-    "@aws-amplify/backend-cli": "^1.0.0",
     "@heroicons/react": "^2.0.18",
     "autoprefixer": "10.4.15",
-    "aws-amplify": "^6.0.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.15",
     "framer-motion": "^10.16.1",
-    "my_portfolio_site": "file:",
     "next": "^14.2.32",
     "postcss": "^8.4.32",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-animated-numbers": "^0.16.0",
-    "react-dom": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-type-animation": "^3.1.0",
     "resend": "^1.0.0",
+    "sharp": "^0.34.4",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
