@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
-import dynamic from "next/dynamic";
-
-// @ts-ignore - react-animated-numbers has type compatibility issues with Next.js dynamic
-const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
-  ssr: false,
-}) as any;
+import projectsData from "../Projects/projectsData";
+import AnimatedNumber from "../Utilities/AnimatedNumber";
 
 const AchievementsSection = () => {
   const startDate = new Date('2014-06-01');
@@ -14,10 +10,10 @@ const AchievementsSection = () => {
     (currentDate.getMonth() > startDate.getMonth() || 
      (currentDate.getMonth() === startDate.getMonth() && currentDate.getDate() >= startDate.getDate()) ? 0 : -1);
 
-  const achievementsList = [
+const achievementsList = [
     {
       metric: "Projects",
-      value: "4",
+      value: projectsData.length.toString(),
       postfix: "+",
     },
     {
@@ -46,18 +42,12 @@ const AchievementsSection = () => {
             >
               <h2 className="text-white text-4xl font-bold flex flex-row">
                 {achievement.prefix}
-                <AnimatedNumbers
-                  includeComma
-                  animateToNumber={parseInt(achievement.value)}
+                <AnimatedNumber
+                  value={parseInt(achievement.value || "0", 10)}
+                  duration={700}
                   locale="en-US"
+                  useSeparator={true}
                   className="text-white text-4xl font-bold"
-                  configs={(_: any, idx: number) => {
-                    return {
-                      mass: 1,
-                      friction: 100,
-                      tensions: 140 * (idx + 1),
-                    };
-                  }}
                 />
                 {achievement.postfix}
               </h2>
