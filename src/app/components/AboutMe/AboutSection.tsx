@@ -38,7 +38,15 @@ const TAB_DATA = [
       <ul className="list-disc pl-2">
         <li>AWS Cloud Practitioner</li>
         <li>AWS Developer Certification</li>
-        <li><Link href="https://www.credly.com/badges/94f00762-be7c-4f89-8252-5765f9272067/public_url">GenAI Application Developer</Link></li>
+        <li>
+          <Link
+            href="https://www.credly.com/badges/94f00762-be7c-4f89-8252-5765f9272067/public_url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GenAI Application Developer
+          </Link>
+        </li>
       </ul>
     ),
   },
