@@ -3,12 +3,22 @@ import React from "react";
 import projectsData from "../Projects/projectsData";
 import AnimatedNumber from "../Utilities/AnimatedNumber";
 
+// Utility function to calculate full years between two dates
+function calculateYearsBetweenDates(startDate: Date, endDate: Date): number {
+  let years = endDate.getFullYear() - startDate.getFullYear();
+  if (
+    endDate.getMonth() < startDate.getMonth() ||
+    (endDate.getMonth() === startDate.getMonth() && endDate.getDate() < startDate.getDate())
+  ) {
+    years--;
+  }
+  return years;
+}
+
 const AchievementsSection = () => {
   const startDate = new Date('2014-06-01');
   const currentDate = new Date();
-  const careerYears = currentDate.getFullYear() - startDate.getFullYear() + 
-    (currentDate.getMonth() > startDate.getMonth() || 
-     (currentDate.getMonth() === startDate.getMonth() && currentDate.getDate() >= startDate.getDate()) ? 0 : -1);
+  const careerYears = calculateYearsBetweenDates(startDate, currentDate);
 
 const achievementsList = [
     {
