@@ -86,8 +86,8 @@ const SmartLink = React.memo(
           : `${typeof children === "string" ? children : "link"} (opens in a new tab)`
         : ariaLabel ?? (typeof children === "string" ? children : undefined);
 
-      // Icon element (only render when iconPosition !== 'none' and external)
-      const Icon = (
+      // Render icon only when requested (avoids creating the element when iconPosition === 'none')
+      const renderIcon = () => (
         <ArrowTopRightOnSquareIcon
           className={`${sizeCfg.icon} ${external ? "opacity-100" : "opacity-80"}`}
           aria-hidden="true"
@@ -105,9 +105,9 @@ const SmartLink = React.memo(
         return (
           <Link href={href} legacyBehavior passHref>
             <a ref={ref} className={combined} aria-label={accessibleLabel}>
-              {iconPosition === "left" && Icon}
+              {iconPosition !== "none" && iconPosition === "left" && renderIcon()}
               <span>{children}</span>
-              {iconPosition === "right" && Icon}
+              {iconPosition !== "none" && iconPosition === "right" && renderIcon()}
             </a>
           </Link>
         );
@@ -123,9 +123,9 @@ const SmartLink = React.memo(
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
         >
-          {iconPosition === "left" && Icon}
+          {iconPosition !== "none" && iconPosition === "left" && renderIcon()}
           <span>{children}</span>
-          {iconPosition === "right" && Icon}
+          {iconPosition !== "none" && iconPosition === "right" && renderIcon()}
           {external && (
             <span className="sr-only">Opens in a new tab</span>
           )}
