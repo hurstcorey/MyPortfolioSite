@@ -3,45 +3,7 @@ import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
-
-const projectsData = [
-  {
-    id: 1,
-    title: "This React Portfolio Website",
-    description: "Project 1 description",
-    image: "/images/projects/1.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/hurstcorey/MyPortfolioSite",
-    previewUrl: "/",
-  },
-  {
-    id: 2,
-    title: "Fate RRPG React Native App",
-    description: "Project 2 description",
-    image: "/images/projects/2.png",
-    tag: ["All","Mobile","Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 3,
-    title: "Blog Website",
-    description: "My Personal Blog where I talk about my life, experiences, and interest",
-    image: "/images/projects/Coreyblog.png",
-    tag: ["All","blog","Web"],
-    gitUrl: "https://support.google.com/blogger/answer/1623800?hl=en",
-    previewUrl: "https://blog.cohurst.co/",
-  },
-  {
-    id: 4,
-    title: "MyAssistant PWA App",
-    description: "Project 4 description",
-    image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-];
+import projectsData from "./projectsData";
 
 const ProjectsSection = () => {
   const [tag, setTag] = useState("All");

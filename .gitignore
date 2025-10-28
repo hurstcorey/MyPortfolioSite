@@ -201,7 +201,13 @@ $RECYCLE.BIN/
 *.lnk
 
 ### Amplify ###
-# AWS Amplify
+# AWS Amplify Gen 2
+amplify_outputs.json
+.amplify/
+amplify-logger-cloudformation-logs.txt
+amplify-backup
+
+# Legacy Amplify Gen 1 (keeping for backward compatibility)
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data

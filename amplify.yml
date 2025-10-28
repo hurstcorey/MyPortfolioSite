@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable && corepack prepare pnpm@8.8.0 --activate
+        - pnpm install --no-frozen-lockfile
+    build:
+      commands:
+        - pnpm run build
+  artifacts:
+    # Next.js build artifacts live in .next (server + static) — Amplify may expect a static folder for SSG
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - ~/.pnpm-store/**/*

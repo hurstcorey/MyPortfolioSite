@@ -1,0 +1,13 @@
+node_modules
+.next/cache
+.next/static/chunks
+.next/static/media
+.vscode
+.env
+.env.local
+.env.*.local
+.DS_Store
+npm-debug.log
+yarn-error.log
+dist
+coverage

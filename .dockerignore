@@ -1,0 +1,27 @@
+# Build artifacts
+.next
+node_modules
+npm-debug.log
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.log
+
+# Git
+.git
