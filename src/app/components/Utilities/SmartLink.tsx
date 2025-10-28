@@ -95,7 +95,12 @@ const SmartLink = React.memo(
       );
 
       // INTERNAL LINK: use Next.js Link for client-side navigation
-      if (!external && (href.startsWith("/") || href.startsWith("#") || href.startsWith("mailto:") === false)) {
+      if (
+        !external &&
+        (href.startsWith("/") ||
+          href.startsWith("#") ||
+          (!href.startsWith("mailto:") && !href.startsWith("tel:")))
+      ) {
         // For mailto or tel we'll still render a normal anchor tag below (treat as external-like behavior)
         return (
           <Link href={href} legacyBehavior passHref>

@@ -28,7 +28,7 @@ const HeroSection = () => {
 				>
 					{/* Reserve a little vertical space to reduce jumpiness when subtitle changes */}
 					<h1
-						className="text-white mb-2 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold"
+						className="text-white mb-2 text-4xl sm:text-5xl lg:text-7xl lg:leading-normal font-extrabold"
 						style={{ minHeight: "1.2em" }}
 					>
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
