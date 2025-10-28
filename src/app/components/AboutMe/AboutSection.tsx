@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SmartLink from "../Utilities/SmartLink";
 import TabButton from "../TabButton";
 
 const TAB_DATA = [
@@ -32,20 +33,23 @@ const TAB_DATA = [
     ),
   },
   {
-    title: "Certifications",
+        title: "Certifications",
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
         <li>AWS Cloud Practitioner</li>
         <li>AWS Developer Certification</li>
-        <li>
-          <Link
+        <li className="flex items-center gap-2">
+          <SmartLink
             href="https://www.credly.com/badges/94f00762-be7c-4f89-8252-5765f9272067/public_url"
-            target="_blank"
-            rel="noopener noreferrer"
+            ariaLabel="GenAI Application Developer certificate"
+            size="md"
+            variant="primary"
+            iconPosition="right"
+            className="text-teal-300 hover:text-teal-200"
           >
             GenAI Application Developer
-          </Link>
+          </SmartLink>
         </li>
       </ul>
     ),

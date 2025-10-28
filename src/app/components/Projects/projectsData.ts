@@ -3,7 +3,7 @@ const projectsData = [
     id: 1,
     title: "This React Portfolio Website",
     description: "Project 1 description",
-    image: "",
+    image: "/images/projects/MyPortfolioScreenShot.png",
     tag: ["All", "Web"],
     gitUrl: "https://github.com/hurstcorey/MyPortfolioSite",
     previewUrl: "/",
