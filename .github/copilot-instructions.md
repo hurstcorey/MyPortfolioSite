@@ -15,8 +15,7 @@ Why this matters: keep interactive logic in client components (preserve `"use cl
 
 ## Developer workflows & commands
 
-- Package manager: pnpm (declared in `package.json`). Common commands:
- - Package manager: pnpm (pinned in `package.json` as `packageManager: pnpm@8.8.0`). Common commands:
+- Package manager: pnpm (pinned in `package.json` as `packageManager: pnpm@8.8.0`). Common commands:
   - Install: `pnpm install` (or `npm install` if pnpm not available)
   - Dev server: `pnpm run dev` -> serves at http://localhost:3000
   - Build: `pnpm run build` then `pnpm start`
