@@ -39,7 +39,7 @@ const projectsData = [
     id: 5,
     title: "Star Wars Unlimited App",
     description: "A feature-rich implementation of the Star Wars Unlimited TCG, enabling deck building and gameplay against an AI opponent.",
-    image: "",
+    image: "/images/projects/star-wars-unlimited.png",
     tag: ["All", "Web", "Mobile", "PWA", "Vite", "Express", "React", "Node.js", "TailwindCSS", "Drizzle", "Docker", "Replit"],
     gitUrl: "/",
     previewUrl: "/swu",
