@@ -9,11 +9,11 @@ const HeroSection = () => {
 	// primary (short) and secondary (longer phrases) sequences
 	const primarySequence = useMemo(() => ["Corey Hurst...", 2000], []);
 	const secondarySequence = useMemo(
-		() => ["a Software Engineer", 500, 
-      "a Technologist", 500,
-      "a Humanitarian", 500, 
-      "a Mental health advocate", 500,
-      "how might I help you?", 2500],
+		() => ["a Software Engineer", 500,
+			"a Technologist", 500,
+			"a Humanitarian", 500,
+			"a Mental health advocate", 500,
+			"how might I help you?", 2500],
 		[]
 	);
 
@@ -71,7 +71,7 @@ const HeroSection = () => {
 							Hire Me
 						</Link>
 						<Link
-							href="/images/documents/10282025-Corey-Hurst-Senior Solutions Developer.pdf"
+							href="/images/documents/11022025_Corey_Hurst_Resume.pdf"
 							className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3"
 							target="_blank"
 							rel="noopener noreferrer"
