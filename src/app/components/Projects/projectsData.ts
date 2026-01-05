@@ -44,6 +44,15 @@ const projectsData = [
     gitUrl: "/",
     previewUrl: "/swu",
   },
+  {
+    id: 6,
+    title: "AI Diagram Generator",
+    description: "An AI-powered tool to create diagrams from text descriptions.",
+    image: "/images/projects/ai-diagram-generator.png",
+    tag: ["All", "Web", "AI", "Replit"],
+    gitUrl: "/",
+    previewUrl: "https://diagram-master-ai-coreyhurst88.replit.app/",
+  },
 ];
 
 export default projectsData;
