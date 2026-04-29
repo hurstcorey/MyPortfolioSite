@@ -21,6 +21,7 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: ["cursor-grabbing"],
 }
 
 export default config

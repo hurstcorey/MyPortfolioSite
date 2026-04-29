@@ -84,6 +84,9 @@ export async function readSnapshotFallback(): Promise<Playlist[]> {
 export async function fetchChannelPlaylistsWithFallback(
   channelId: string,
 ): Promise<Playlist[]> {
+  if (!process.env.YOUTUBE_API_KEY) {
+    return readSnapshotFallback();
+  }
   try {
     return await fetchChannelPlaylists(channelId);
   } catch (err) {

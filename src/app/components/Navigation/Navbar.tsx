@@ -12,7 +12,7 @@ const navLinks = [
   { title: "Gamer", path: "/#gamer" },
   { title: "Artist", path: "/#artist" },
   { title: "Projects", path: "/#projects" },
-  { title: "Lists", path: "/lists" },
+  { title: "Lists", path: "/#lists" },
   { title: "Contact", path: "/#contact" },
 ];
 

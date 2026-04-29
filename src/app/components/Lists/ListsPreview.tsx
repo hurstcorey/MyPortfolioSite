@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { fetchChannelPlaylistsWithFallback } from "@/lib/youtube";
-import PlaylistCard from "./PlaylistCard";
+import PlaylistCarousel from "./PlaylistCarousel";
 import type { Playlist } from "@/lib/youtube.types";
-
-const PREVIEW_COUNT = 4;
 
 const ListsPreview = async () => {
   const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
@@ -17,11 +15,11 @@ const ListsPreview = async () => {
     return null;
   }
 
-  const recent = [...playlists]
-    .sort((a, b) => (b.publishedAt > a.publishedAt ? 1 : -1))
-    .slice(0, PREVIEW_COUNT);
+  const sorted = [...playlists].sort((a, b) =>
+    b.publishedAt > a.publishedAt ? 1 : -1,
+  );
 
-  if (recent.length === 0) return null;
+  if (sorted.length === 0) return null;
 
   return (
     <section id="lists" className="my-12">
@@ -29,13 +27,7 @@ const ListsPreview = async () => {
         My Playlists
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {recent.map((playlist) => (
-          <Link key={playlist.id} href={`/lists#${playlist.id}`}>
-            <PlaylistCard playlist={playlist} isActive={false} onClick={() => {}} />
-          </Link>
-        ))}
-      </div>
+      <PlaylistCarousel playlists={sorted} />
 
       <div className="text-center mt-8">
         <Link
