@@ -41,7 +41,10 @@ const PlaylistDetail: React.FC<PlaylistDetailProps> = ({ playlist, channelId }) 
   }, [playlist.id]);
 
   useEffect(() => {
-    containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const t = setTimeout(() => {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+    return () => clearTimeout(t);
   }, [playlist.id]);
 
   const subscribeUrl = `https://www.youtube.com/channel/${channelId}?sub_confirmation=1`;
@@ -50,7 +53,7 @@ const PlaylistDetail: React.FC<PlaylistDetailProps> = ({ playlist, channelId }) 
   return (
     <div
       ref={containerRef}
-      className="col-span-full bg-[#181818] rounded-xl p-6 md:p-8 my-2 scroll-mt-24"
+      className="col-span-full bg-[#181818] rounded-xl p-6 md:p-8 my-2 scroll-mt-32"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
