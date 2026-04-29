@@ -1,31 +1,35 @@
-# Use the official Node.js 20 image as the base image with a specific digest for security and reproducibility
+# Single-stage build (small enough for a portfolio site).
+# Pin to a digest later if you want full reproducibility.
 FROM node:24.10.0-alpine3.22 AS builder
 
-# Set the working directory
 WORKDIR /app
 
-# install pnpm
+# pnpm via corepack
 RUN corepack enable && corepack prepare pnpm@8 --activate
 
-# copy and install
-COPY package.json pnpm-lock.yaml* ./
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Build-time env vars baked into the Next.js bundle.
+# Pass via: docker build --build-arg NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=UC...
+ARG NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=""
+ENV NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=$NEXT_PUBLIC_YOUTUBE_CHANNEL_ID
 
-# Copy the rest of the application code
+# Install deps. The project intentionally doesn't track a lockfile
+# (.npmrc has shrinkwrap=false), so --frozen-lockfile would fail.
+COPY package.json ./
+RUN pnpm install --prefer-offline
+
+# Copy source (respects .dockerignore)
 COPY . .
 
-# Build the Next.js application
+# Build
 RUN pnpm run build
 
-# Expose the port the app runs on
 EXPOSE 3000
 
-# Create a non-root user for security
+# Drop privileges
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nextjs -u 1001
-
 USER nextjs
 
-# Command to run the application
+# Server-only secrets (e.g., YOUTUBE_API_KEY) come in at runtime via:
+#   docker run --env-file .env.local ...
 CMD ["pnpm", "start"]
