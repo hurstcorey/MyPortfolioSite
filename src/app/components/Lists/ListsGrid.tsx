@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import PlaylistCard from "./PlaylistCard";
 import PlaylistDetail from "./PlaylistDetail";
@@ -22,6 +22,13 @@ const ListsGrid: React.FC<ListsGridProps> = ({ playlists }) => {
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState<string | null>(null);
   const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? "";
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash && playlists.some((p) => p.id === hash)) {
+      setActiveId(hash);
+    }
+  }, [playlists]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -83,12 +90,13 @@ const ListsGrid: React.FC<ListsGridProps> = ({ playlists }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {row.map((playlist) => (
-                  <PlaylistCard
-                    key={playlist.id}
-                    playlist={playlist}
-                    isActive={activeId === playlist.id}
-                    onClick={() => handleCardClick(playlist.id)}
-                  />
+                  <div key={playlist.id} id={playlist.id}>
+                    <PlaylistCard
+                      playlist={playlist}
+                      isActive={activeId === playlist.id}
+                      onClick={() => handleCardClick(playlist.id)}
+                    />
+                  </div>
                 ))}
               </div>
             </React.Fragment>
