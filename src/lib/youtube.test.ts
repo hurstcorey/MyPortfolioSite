@@ -1,5 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchChannelPlaylists, fetchPlaylistItems } from './youtube';
+import {
+  fetchChannelPlaylists,
+  fetchChannelPlaylistsWithFallback,
+  fetchPlaylistItems,
+} from './youtube';
+import * as fs from 'node:fs/promises';
+
+vi.mock('node:fs/promises', () => ({
+  readFile: vi.fn(),
+}));
 
 const SAMPLE_RESPONSE = {
   items: [
@@ -153,5 +162,76 @@ describe('fetchPlaylistItems', () => {
         durationSeconds: null,
       },
     ]);
+  });
+});
+
+describe('fetchChannelPlaylistsWithFallback', () => {
+  beforeEach(() => {
+    process.env.YOUTUBE_API_KEY = 'test-key';
+    vi.stubGlobal('fetch', vi.fn());
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.clearAllMocks();
+    delete process.env.YOUTUBE_API_KEY;
+  });
+
+  it('returns live data when fetch succeeds', async () => {
+    (global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        items: [
+          {
+            id: 'PL_LIVE',
+            snippet: {
+              title: 'Live',
+              description: '',
+              publishedAt: '',
+              channelTitle: '',
+              thumbnails: {},
+            },
+            contentDetails: { itemCount: 1 },
+          },
+        ],
+      }),
+    });
+
+    const result = await fetchChannelPlaylistsWithFallback('UC_TEST');
+    expect(result[0].id).toBe('PL_LIVE');
+    expect(fs.readFile).not.toHaveBeenCalled();
+  });
+
+  it('falls back to snapshot when fetch fails', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockResolvedValue(
+      JSON.stringify({
+        snapshotAt: '2026-04-28T00:00:00Z',
+        channelId: 'UC_TEST',
+        playlists: [
+          {
+            id: 'PL_CACHED',
+            title: 'Cached',
+            description: '',
+            videoCount: 0,
+            thumbnailUrl: '',
+            publishedAt: '',
+            channelTitle: '',
+            videos: [],
+          },
+        ],
+      }),
+    );
+
+    const result = await fetchChannelPlaylistsWithFallback('UC_TEST');
+    expect(result[0].id).toBe('PL_CACHED');
+    expect(result[0]).not.toHaveProperty('videos');
+  });
+
+  it('throws when both fetch and snapshot fail', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockRejectedValue(new Error('ENOENT'));
+
+    await expect(fetchChannelPlaylistsWithFallback('UC_TEST')).rejects.toThrow();
   });
 });

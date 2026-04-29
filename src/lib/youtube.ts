@@ -1,5 +1,7 @@
 import 'server-only';
-import type { Playlist, PlaylistVideo } from './youtube.types';
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
+import type { Playlist, PlaylistVideo, PlaylistSnapshot } from './youtube.types';
 
 const API_BASE = 'https://www.googleapis.com/youtube/v3';
 
@@ -70,4 +72,22 @@ function normalizePlaylistItem(item: any): PlaylistVideo {
     position: item.snippet?.position ?? 0,
     durationSeconds: null,
   };
+}
+
+export async function readSnapshotFallback(): Promise<Playlist[]> {
+  const snapshotPath = path.join(process.cwd(), 'data', 'playlists-snapshot.json');
+  const json = await fs.readFile(snapshotPath, 'utf-8');
+  const parsed = JSON.parse(json) as PlaylistSnapshot;
+  return parsed.playlists.map(({ videos: _videos, ...playlist }) => playlist);
+}
+
+export async function fetchChannelPlaylistsWithFallback(
+  channelId: string,
+): Promise<Playlist[]> {
+  try {
+    return await fetchChannelPlaylists(channelId);
+  } catch (err) {
+    console.warn('[youtube] live fetch failed, falling back to snapshot:', err);
+    return readSnapshotFallback();
+  }
 }
