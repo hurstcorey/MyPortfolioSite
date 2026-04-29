@@ -8,7 +8,9 @@ import { GET } from './route';
 import { fetchPlaylistItems } from '@/lib/youtube';
 
 describe('GET /api/youtube/playlist/[id]', () => {
-  afterEach(() => vi.clearAllMocks());
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
   it('returns 200 with videos on success', async () => {
     (fetchPlaylistItems as any).mockResolvedValue([
