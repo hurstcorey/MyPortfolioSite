@@ -3,7 +3,6 @@ name: CI
 on:
   push:
     branches:
-      - main
       - development
       - 'feature/**'
   pull_request:
@@ -40,3 +39,5 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        env:
+          NEXT_PUBLIC_YOUTUBE_CHANNEL_ID: ${{ secrets.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID }}

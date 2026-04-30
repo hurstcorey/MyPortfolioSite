@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src app --ext .ts,.tsx,.js,.jsx",
     "test": "vitest run",
     "test:watch": "vitest",
     "snapshot:youtube": "node scripts/snapshot-youtube.mjs",
