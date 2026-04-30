@@ -6,34 +6,14 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 
 const navLinks = [
-  {
-    title: "My Story",
-    path: "#mystory",
-  },
-  {
-    title: "Engineer",
-    path: "#engineer",
-  },
-  {
-    title: "Writer",
-    path: "#writer",
-  },
-  {
-    title: "Gamer",
-    path: "#gamer",
-  },
-  {
-    title: "Artist",
-    path: "#artist",
-  },
-  {
-    title: "Projects",
-    path: "#projects",
-  },
-  {
-    title: "Contact",
-    path: "#contact",
-  },
+  { title: "My Story", path: "/#mystory" },
+  { title: "Engineer", path: "/#engineer" },
+  { title: "Writer", path: "/#writer" },
+  { title: "Gamer", path: "/#gamer" },
+  { title: "Artist", path: "/#artist" },
+  { title: "Projects", path: "/#projects" },
+  { title: "Lists", path: "/#lists" },
+  { title: "Contact", path: "/#contact" },
 ];
 
 const Navbar = () => {

@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src app --ext .ts,.tsx,.js,.jsx",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "snapshot:youtube": "node scripts/snapshot-youtube.mjs",
+    "docker:local": "bash scripts/docker-local.sh"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -14,7 +18,7 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.15",
     "framer-motion": "^10.16.1",
-    "next": "^14.2.32",
+    "next": "^16.1.6",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,7 +30,10 @@
   "devDependencies": {
     "@types/node": "20.10.6",
     "@types/react": "18.2.46",
-    "typescript": "^5.3.0"
+    "@vitest/ui": "^1.6.1",
+    "dotenv": "^16.4.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.1"
   },
   "packageManager": "pnpm@8.8.0",
   "engines": {
