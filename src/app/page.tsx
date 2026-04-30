@@ -3,6 +3,7 @@ import Navbar from "./components/Navigation/Navbar";
 import AboutSection from "./components/AboutMe/AboutSection";
 import AchievementsSection from "./components/AboutMe/AchievementsSection";
 import ProjectsSection from "./components/Projects/ProjectsSection";
+import ListsPreview from "./components/Lists/ListsPreview";
 import EmailSection from "./components/Utilities/EmailSection";
 import Footer from "./components/Footer";
 
@@ -15,6 +16,7 @@ export default function Home() {
         <AchievementsSection />
         <AboutSection />
         <ProjectsSection />
+        <ListsPreview />
         <EmailSection />
       </div>
       <Footer />

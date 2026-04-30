@@ -3,11 +3,21 @@
 node_modules
 npm-debug.log
 
-# Environment files
+# Environment files (never copy into image)
 .env
 .env.local
 .env.development
 .env.test
+.env.local.example
+
+# Test infrastructure (not needed at runtime)
+test
+vitest.config.ts
+**/*.test.ts
+**/*.test.tsx
+
+# Docs and planning artifacts
+docs
 
 # OS generated files
 .DS_Store
@@ -25,3 +35,4 @@ Thumbs.db
 
 # Git
 .git
+.gitignore
