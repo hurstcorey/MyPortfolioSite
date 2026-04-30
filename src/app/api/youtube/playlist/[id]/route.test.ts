@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/lib/youtube', () => ({
-  fetchPlaylistItems: vi.fn(),
+  fetchPlaylistItemsWithFallback: vi.fn(),
 }));
 
 import { GET } from './route';
-import { fetchPlaylistItems } from '@/lib/youtube';
+import { fetchPlaylistItemsWithFallback } from '@/lib/youtube';
 
 describe('GET /api/youtube/playlist/[id]', () => {
   afterEach(() => {
@@ -13,7 +13,7 @@ describe('GET /api/youtube/playlist/[id]', () => {
   });
 
   it('returns 200 with videos on success', async () => {
-    (fetchPlaylistItems as any).mockResolvedValue([
+    (fetchPlaylistItemsWithFallback as any).mockResolvedValue([
       {
         id: 'v1',
         title: 't',
@@ -31,11 +31,11 @@ describe('GET /api/youtube/playlist/[id]', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.videos).toHaveLength(1);
-    expect(fetchPlaylistItems).toHaveBeenCalledWith('PL_X');
+    expect(fetchPlaylistItemsWithFallback).toHaveBeenCalledWith('PL_X');
   });
 
-  it('returns 502 on YouTube API error', async () => {
-    (fetchPlaylistItems as any).mockRejectedValue(new Error('quota exceeded'));
+  it('returns 502 without detail on total failure', async () => {
+    (fetchPlaylistItemsWithFallback as any).mockRejectedValue(new Error('quota exceeded'));
 
     const res = await GET(new Request('http://localhost/api/youtube/playlist/PL_X'), {
       params: { id: 'PL_X' },
@@ -44,5 +44,6 @@ describe('GET /api/youtube/playlist/[id]', () => {
     expect(res.status).toBe(502);
     const body = await res.json();
     expect(body.error).toBe('youtube_api_error');
+    expect(body.detail).toBeUndefined();
   });
 });

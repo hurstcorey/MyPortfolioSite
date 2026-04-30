@@ -3,6 +3,7 @@ import {
   fetchChannelPlaylists,
   fetchChannelPlaylistsWithFallback,
   fetchPlaylistItems,
+  fetchPlaylistItemsWithFallback,
 } from './youtube';
 import * as fs from 'node:fs/promises';
 
@@ -233,5 +234,81 @@ describe('fetchChannelPlaylistsWithFallback', () => {
     (fs.readFile as any).mockRejectedValue(new Error('ENOENT'));
 
     await expect(fetchChannelPlaylistsWithFallback('UC_TEST')).rejects.toThrow();
+  });
+});
+
+const SNAPSHOT_WITH_VIDEOS = JSON.stringify({
+  snapshotAt: '2026-04-28T00:00:00Z',
+  channelId: 'UC_TEST',
+  playlists: [
+    {
+      id: 'PL_SNAP',
+      title: 'Snapshot Playlist',
+      description: '',
+      videoCount: 1,
+      thumbnailUrl: '',
+      publishedAt: '',
+      channelTitle: '',
+      videos: [
+        { id: 'vid_snap', title: 'Snap Video', description: '', thumbnailUrl: '', position: 0, durationSeconds: null },
+      ],
+    },
+  ],
+});
+
+describe('fetchPlaylistItemsWithFallback', () => {
+  beforeEach(() => {
+    process.env.YOUTUBE_API_KEY = 'test-key';
+    vi.stubGlobal('fetch', vi.fn());
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.clearAllMocks();
+    delete process.env.YOUTUBE_API_KEY;
+  });
+
+  it('returns live videos when fetch succeeds', async () => {
+    (global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        items: [
+          {
+            snippet: { title: 'Live Vid', description: '', position: 0, thumbnails: {} },
+            contentDetails: { videoId: 'vid_live' },
+          },
+        ],
+      }),
+    });
+
+    const result = await fetchPlaylistItemsWithFallback('PL_SNAP');
+    expect(result[0].id).toBe('vid_live');
+    expect(fs.readFile).not.toHaveBeenCalled();
+  });
+
+  it('falls back to snapshot videos when fetch fails', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockResolvedValue(SNAPSHOT_WITH_VIDEOS);
+
+    const result = await fetchPlaylistItemsWithFallback('PL_SNAP');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('vid_snap');
+  });
+
+  it('returns empty array when playlist not in snapshot', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockResolvedValue(SNAPSHOT_WITH_VIDEOS);
+
+    const result = await fetchPlaylistItemsWithFallback('PL_MISSING');
+    expect(result).toEqual([]);
+  });
+
+  it('uses snapshot directly when YOUTUBE_API_KEY is absent', async () => {
+    delete process.env.YOUTUBE_API_KEY;
+    (fs.readFile as any).mockResolvedValue(SNAPSHOT_WITH_VIDEOS);
+
+    const result = await fetchPlaylistItemsWithFallback('PL_SNAP');
+    expect(result[0].id).toBe('vid_snap');
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });

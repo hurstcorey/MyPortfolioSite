@@ -81,6 +81,14 @@ export async function readSnapshotFallback(): Promise<Playlist[]> {
   return parsed.playlists.map(({ videos: _videos, ...playlist }) => playlist);
 }
 
+export async function readSnapshotPlaylistVideos(playlistId: string): Promise<PlaylistVideo[]> {
+  const snapshotPath = path.join(process.cwd(), 'data', 'playlists-snapshot.json');
+  const json = await fs.readFile(snapshotPath, 'utf-8');
+  const parsed = JSON.parse(json) as PlaylistSnapshot;
+  const playlist = parsed.playlists.find((p) => p.id === playlistId);
+  return playlist?.videos ?? [];
+}
+
 export async function fetchChannelPlaylistsWithFallback(
   channelId: string,
 ): Promise<Playlist[]> {
@@ -92,5 +100,19 @@ export async function fetchChannelPlaylistsWithFallback(
   } catch (err) {
     console.warn('[youtube] live fetch failed, falling back to snapshot:', err);
     return readSnapshotFallback();
+  }
+}
+
+export async function fetchPlaylistItemsWithFallback(
+  playlistId: string,
+): Promise<PlaylistVideo[]> {
+  if (!process.env.YOUTUBE_API_KEY) {
+    return readSnapshotPlaylistVideos(playlistId);
+  }
+  try {
+    return await fetchPlaylistItems(playlistId);
+  } catch (err) {
+    console.warn('[youtube] playlist items fetch failed, falling back to snapshot:', err);
+    return readSnapshotPlaylistVideos(playlistId);
   }
 }
