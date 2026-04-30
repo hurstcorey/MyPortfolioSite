@@ -1,15 +1,20 @@
 import React from "react";
 import Link from "next/link";
-import { fetchChannelPlaylistsWithFallback } from "@/lib/youtube";
+import { fetchChannelPlaylistsWithFallback, readSnapshotFallback } from "@/lib/youtube";
 import PlaylistCarousel from "./PlaylistCarousel";
 import type { Playlist } from "@/lib/youtube.types";
 
 const ListsPreview = async () => {
-  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? "";
+  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
+  if (!channelId) {
+    console.warn('[lists/preview] NEXT_PUBLIC_YOUTUBE_CHANNEL_ID is not set — rendering from snapshot');
+  }
 
   let playlists: Playlist[] = [];
   try {
-    playlists = await fetchChannelPlaylistsWithFallback(channelId);
+    playlists = channelId
+      ? await fetchChannelPlaylistsWithFallback(channelId)
+      : await readSnapshotFallback();
   } catch {
     return null;
   }
