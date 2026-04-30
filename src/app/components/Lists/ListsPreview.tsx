@@ -5,8 +5,7 @@ import PlaylistCarousel from "./PlaylistCarousel";
 import type { Playlist } from "@/lib/youtube.types";
 
 const ListsPreview = async () => {
-  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
-  if (!channelId) return null;
+  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? "";
 
   let playlists: Playlist[] = [];
   try {

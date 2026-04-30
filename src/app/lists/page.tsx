@@ -13,11 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ListsPage() {
-  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
-  if (!channelId) {
-    throw new Error("NEXT_PUBLIC_YOUTUBE_CHANNEL_ID is not set");
-  }
-
+  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? "";
   const playlists = await fetchChannelPlaylistsWithFallback(channelId);
 
   return (
