@@ -25,7 +25,7 @@ describe('GET /api/youtube/playlist/[id]', () => {
     ]);
 
     const res = await GET(new Request('http://localhost/api/youtube/playlist/PL_X'), {
-      params: Promise.resolve({ id: 'PL_X' }),
+      params: { id: 'PL_X' },
     });
 
     expect(res.status).toBe(200);
@@ -38,7 +38,7 @@ describe('GET /api/youtube/playlist/[id]', () => {
     (fetchPlaylistItemsWithFallback as any).mockRejectedValue(new Error('quota exceeded'));
 
     const res = await GET(new Request('http://localhost/api/youtube/playlist/PL_X'), {
-      params: Promise.resolve({ id: 'PL_X' }),
+      params: { id: 'PL_X' },
     });
 
     expect(res.status).toBe(502);
