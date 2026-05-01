@@ -46,12 +46,13 @@ const projectsData = [
   },
   {
     id: 6,
-    title: "AI Diagram Generator",
-    description: "An AI-powered tool to create diagrams from text descriptions.",
+    title: "DiagramMasterAI",
+    description:
+      "AI-powered diagram generator that turns natural-language prompts into Mermaid/Kroki diagrams. Live at diagrammaster.app on GCP Cloud Run with a Supabase backend, Capacitor-based Android build, and tiered pricing (BYOK, pay-as-you-go, subscription). The original Replit prototype was retired on 2026-05-01.",
     image: "/images/projects/ai-diagram-generator.png",
-    tag: ["All", "Web", "AI", "Replit"],
+    tag: ["All", "Web", "Mobile", "AI", "GCP", "Cloud Run", "Supabase", "Capacitor", "React"],
     gitUrl: "/",
-    previewUrl: "https://diagram-master-ai-coreyhurst88.replit.app/",
+    previewUrl: "https://diagrammaster.app/",
   },
 ];
 
