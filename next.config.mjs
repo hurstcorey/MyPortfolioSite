@@ -10,6 +10,11 @@ const nextConfig = {
         destination: 'https://star-wars-unlimited-app.replit.app',
         permanent: true,
       },
+      {
+        source: '/diagram',
+        destination: 'https://diagrammaster.app/',
+        permanent: true,
+      },
     ]
   },
 }
