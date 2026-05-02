@@ -1,0 +1,17 @@
+# Normalize line endings to LF on commit; leave working tree alone.
+# Eliminates CRLF/LF churn caused by editing across WSL and Windows.
+* text=auto eol=lf
+
+# Binary files: never normalize.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+
+# Lockfiles: keep as-is (LF on all platforms).
+pnpm-lock.yaml text eol=lf
+package-lock.json text eol=lf
