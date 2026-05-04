@@ -4,6 +4,7 @@ import AboutSection from "./components/AboutMe/AboutSection";
 import AchievementsSection from "./components/AboutMe/AchievementsSection";
 import ProjectsSection from "./components/Projects/ProjectsSection";
 import ListsPreview from "./components/Lists/ListsPreview";
+import ArtistSection from "./components/Artist/ArtistSection";
 import EmailSection from "./components/Utilities/EmailSection";
 import Footer from "./components/Footer";
 
@@ -15,6 +16,7 @@ export default function Home() {
         <HeroSection />
         <AchievementsSection />
         <AboutSection />
+        <ArtistSection />
         <ProjectsSection />
         <ListsPreview />
         <EmailSection />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GithubIcon from "../../../../public/images/icons/icons8-github-64.png";
 import LinkedinIcon from "../../../../public/images/icons/icons8-linkedin-64.png";
 import FacebookIcon from "../../../../public/images/icons/icons8-facebook-64.png" 
@@ -12,6 +12,11 @@ import Image from "next/image";
 
 const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -84,7 +89,9 @@ const EmailSection = () => {
         </div>
       </div>
       <div>
-        {emailSubmitted ? (
+        {!mounted ? (
+          <div className="h-[400px]" aria-hidden="true" />
+        ) : emailSubmitted ? (
           <p className="text-green-500 text-sm mt-2">
             Email sent successfully!
           </p>

@@ -25,9 +25,11 @@ RUN pnpm run build
 
 EXPOSE 3000
 
-# Drop privileges
+# Drop privileges. Chown .next so the unprivileged user can write
+# the image-optimization cache (.next/cache/images) at runtime.
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001
+    adduser -S nextjs -u 1001 && \
+    chown -R nextjs:nodejs /app/.next
 USER nextjs
 
 # Server-only secrets (e.g., YOUTUBE_API_KEY) come in at runtime via:

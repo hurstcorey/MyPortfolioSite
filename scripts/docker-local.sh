@@ -33,8 +33,15 @@ if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
   docker rm -f "${CONTAINER}" >/dev/null
 fi
 
+CACHE_FLAG=""
+if [ "${NO_CACHE:-}" = "1" ]; then
+  echo "▶ NO_CACHE=1 — building without layer cache"
+  CACHE_FLAG="--no-cache"
+fi
+
 echo "▶ Building ${IMAGE}..."
 docker build \
+  ${CACHE_FLAG} \
   --build-arg "NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=${NEXT_PUBLIC_YOUTUBE_CHANNEL_ID}" \
   -t "${IMAGE}" \
   .
