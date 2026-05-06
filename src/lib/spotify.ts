@@ -1,6 +1,8 @@
 import 'server-only';
+import type { SpotifyPlaylist } from './spotify.types';
 
 const ACCOUNTS_BASE = 'https://accounts.spotify.com';
+const API_BASE = 'https://api.spotify.com/v1';
 const TOKEN_TTL_BUFFER_SECONDS = 300;
 
 // Module-level cache. Each serverless instance gets its own; that's fine —
@@ -58,4 +60,43 @@ async function doFetchToken(): Promise<string> {
     expiresAt: Date.now() + (data.expires_in - TOKEN_TTL_BUFFER_SECONDS) * 1000,
   };
   return cachedToken.value;
+}
+
+function mapSpotifyPlaylist(item: any): SpotifyPlaylist {
+  const id: string = item.id;
+  const firstImage: string | undefined = item.images?.[0]?.url;
+  return {
+    source: 'spotify',
+    id,
+    title: item.name ?? '',
+    description: item.description ?? '',
+    thumbnailUrl: firstImage ?? null,
+    trackCount: item.tracks?.total ?? 0,
+    ownerName: item.owner?.display_name ?? '',
+    publicUrl: item.external_urls?.spotify ?? `https://open.spotify.com/playlist/${id}`,
+    embedUrl: `https://open.spotify.com/embed/playlist/${id}`,
+    publishedAt: '',
+  };
+}
+
+export async function fetchUserPlaylists(userId: string): Promise<SpotifyPlaylist[]> {
+  const token = await fetchClientCredentialsToken();
+  const out: SpotifyPlaylist[] = [];
+  let url: string | null = `${API_BASE}/users/${userId}/playlists?limit=50`;
+
+  while (url) {
+    const res: Response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`Spotify playlists fetch failed: ${res.status} ${body}`);
+    }
+    const page = await res.json();
+    for (const item of page.items ?? []) out.push(mapSpotifyPlaylist(item));
+    url = page.next ?? null;
+  }
+
+  return out;
 }

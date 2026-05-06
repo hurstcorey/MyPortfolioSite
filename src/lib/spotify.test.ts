@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as fs from 'node:fs/promises';
 import {
   fetchClientCredentialsToken,
+  fetchUserPlaylists,
   __resetTokenCacheForTests,
 } from './spotify';
 
@@ -95,5 +96,128 @@ describe('fetchClientCredentialsToken', () => {
       json: async () => ({ expires_in: 3600 }),
     });
     await expect(fetchClientCredentialsToken()).rejects.toThrow(/missing expected fields/);
+  });
+});
+
+const SAMPLE_PLAYLIST_ITEM = {
+  id: 'P_ABC',
+  name: 'Synthwave 84',
+  description: 'Late night drives',
+  images: [
+    { url: 'https://i.scdn.co/image/large.jpg', width: 640, height: 640 },
+    { url: 'https://i.scdn.co/image/small.jpg', width: 64, height: 64 },
+  ],
+  tracks: { total: 42 },
+  owner: { display_name: 'corey' },
+  external_urls: { spotify: 'https://open.spotify.com/playlist/P_ABC' },
+};
+
+describe('fetchUserPlaylists', () => {
+  beforeEach(() => {
+    process.env.SPOTIFY_CLIENT_ID = 'cid';
+    process.env.SPOTIFY_CLIENT_SECRET = 'csecret';
+    vi.stubGlobal('fetch', vi.fn());
+    __resetTokenCacheForTests();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    delete process.env.SPOTIFY_CLIENT_ID;
+    delete process.env.SPOTIFY_CLIENT_SECRET;
+  });
+
+  it('hits /users/{id}/playlists with the bearer token and normalizes the response', async () => {
+    (global.fetch as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'tok', expires_in: 3600 }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ items: [SAMPLE_PLAYLIST_ITEM], next: null }),
+      });
+
+    const result = await fetchUserPlaylists('USER_X');
+
+    expect(result).toEqual([
+      {
+        source: 'spotify',
+        id: 'P_ABC',
+        title: 'Synthwave 84',
+        description: 'Late night drives',
+        thumbnailUrl: 'https://i.scdn.co/image/large.jpg',
+        trackCount: 42,
+        ownerName: 'corey',
+        publicUrl: 'https://open.spotify.com/playlist/P_ABC',
+        embedUrl: 'https://open.spotify.com/embed/playlist/P_ABC',
+        publishedAt: '',
+      },
+    ]);
+
+    const playlistsCall = (global.fetch as any).mock.calls[1];
+    expect(playlistsCall[0]).toBe(
+      'https://api.spotify.com/v1/users/USER_X/playlists?limit=50',
+    );
+    expect(playlistsCall[1].headers.Authorization).toBe('Bearer tok');
+  });
+
+  it('paginates through next URLs until null', async () => {
+    (global.fetch as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'tok', expires_in: 3600 }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          items: [{ ...SAMPLE_PLAYLIST_ITEM, id: 'P1' }],
+          next: 'https://api.spotify.com/v1/users/USER_X/playlists?limit=50&offset=50',
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          items: [{ ...SAMPLE_PLAYLIST_ITEM, id: 'P2' }],
+          next: null,
+        }),
+      });
+
+    const result = await fetchUserPlaylists('USER_X');
+
+    expect(result.map((p) => p.id)).toEqual(['P1', 'P2']);
+    expect((global.fetch as any).mock.calls).toHaveLength(3); // token + 2 pages
+  });
+
+  it('handles missing images by setting thumbnailUrl to null', async () => {
+    (global.fetch as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'tok', expires_in: 3600 }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          items: [{ ...SAMPLE_PLAYLIST_ITEM, images: [] }],
+          next: null,
+        }),
+      });
+
+    const result = await fetchUserPlaylists('USER_X');
+    expect(result[0].thumbnailUrl).toBeNull();
+  });
+
+  it('throws on non-ok playlists response', async () => {
+    (global.fetch as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'tok', expires_in: 3600 }),
+      })
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        text: async () => 'oops',
+      });
+
+    await expect(fetchUserPlaylists('USER_X')).rejects.toThrow(/500/);
   });
 });
