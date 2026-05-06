@@ -1,4 +1,5 @@
 export interface Playlist {
+  source: "youtube";
   id: string;
   title: string;
   description: string;
@@ -20,5 +21,5 @@ export interface PlaylistVideo {
 export interface PlaylistSnapshot {
   snapshotAt: string;
   channelId: string;
-  playlists: Array<Playlist & { videos: PlaylistVideo[] }>;
+  playlists: Array<Omit<Playlist, "source"> & { videos: PlaylistVideo[] }>;
 }
