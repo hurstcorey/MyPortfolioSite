@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowTopRightOnSquareIcon, BookmarkIcon } from "@heroicons/react/24/outline";
 import YouTubeEmbed from "./YouTubeEmbed";
-import type { Playlist, PlaylistVideo } from "@/lib/youtube.types";
+import SpotifyEmbed from "./SpotifyEmbed";
+import type { Playlist } from "@/lib/playlists.types";
+import type { PlaylistVideo } from "@/lib/youtube.types";
 
 interface PlaylistDetailProps {
   playlist: Playlist;
@@ -12,10 +14,36 @@ interface PlaylistDetailProps {
 }
 
 const PlaylistDetail: React.FC<PlaylistDetailProps> = ({ playlist, channelId }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+    return () => clearTimeout(t);
+  }, [playlist.id]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="col-span-full bg-[#181818] rounded-xl p-6 md:p-8 my-2 scroll-mt-32"
+    >
+      {playlist.source === "youtube" ? (
+        <YouTubeDetailBody playlist={playlist} channelId={channelId} />
+      ) : (
+        <SpotifyDetailBody playlist={playlist} />
+      )}
+    </div>
+  );
+};
+
+const YouTubeDetailBody: React.FC<{
+  playlist: Extract<Playlist, { source: "youtube" }>;
+  channelId: string;
+}> = ({ playlist, channelId }) => {
   const [videos, setVideos] = useState<PlaylistVideo[] | null>(null);
   const [activeVideoId, setActiveVideoId] = useState<string | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -40,21 +68,11 @@ const PlaylistDetail: React.FC<PlaylistDetailProps> = ({ playlist, channelId }) 
     };
   }, [playlist.id]);
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 300);
-    return () => clearTimeout(t);
-  }, [playlist.id]);
-
   const subscribeUrl = `https://www.youtube.com/channel/${channelId}?sub_confirmation=1`;
   const saveToLibraryUrl = `https://www.youtube.com/playlist?list=${playlist.id}`;
 
   return (
-    <div
-      ref={containerRef}
-      className="col-span-full bg-[#181818] rounded-xl p-6 md:p-8 my-2 scroll-mt-32"
-    >
+    <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
           <YouTubeEmbed
@@ -130,7 +148,41 @@ const PlaylistDetail: React.FC<PlaylistDetailProps> = ({ playlist, channelId }) 
           Save playlist to library
         </Link>
       </div>
-    </div>
+    </>
+  );
+};
+
+const SpotifyDetailBody: React.FC<{
+  playlist: Extract<Playlist, { source: "spotify" }>;
+}> = ({ playlist }) => {
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2">
+          <SpotifyEmbed embedUrl={playlist.embedUrl} title={playlist.title} />
+        </div>
+
+        <div className="md:col-span-1 flex flex-col">
+          <h3 className="text-white text-xl font-bold mb-2">{playlist.title}</h3>
+          <p className="text-[#ADB7BE] text-sm mb-2">
+            {playlist.trackCount} tracks · by {playlist.ownerName}
+          </p>
+          <p className="text-[#ADB7BE] text-sm line-clamp-5">{playlist.description}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t border-[#33353F]">
+        <Link
+          href={playlist.publicUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-[#1DB954] hover:bg-[#1ed760] text-black px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+        >
+          <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+          Open in Spotify
+        </Link>
+      </div>
+    </>
   );
 };
 
