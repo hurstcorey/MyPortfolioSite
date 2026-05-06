@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "snapshot:youtube": "node scripts/snapshot-youtube.mjs",
+    "snapshot:spotify": "node scripts/snapshot-spotify.mjs",
     "docker:local": "bash scripts/docker-local.sh"
   },
   "dependencies": {
