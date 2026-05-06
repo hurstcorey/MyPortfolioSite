@@ -48,19 +48,52 @@ describe('fetchClientCredentialsToken', () => {
       json: async () => ({ access_token: 'cached', expires_in: 3600 }),
     });
 
-    await fetchClientCredentialsToken();
-    await fetchClientCredentialsToken();
+    const t1 = await fetchClientCredentialsToken();
+    const t2 = await fetchClientCredentialsToken();
 
+    expect(t1).toBe('cached');
+    expect(t2).toBe('cached');
+    expect((global.fetch as any).mock.calls).toHaveLength(1);
+  });
+
+  it('dedups concurrent first-time calls into a single token request', async () => {
+    (global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: async () => ({ access_token: 'shared', expires_in: 3600 }),
+    });
+
+    const [t1, t2, t3] = await Promise.all([
+      fetchClientCredentialsToken(),
+      fetchClientCredentialsToken(),
+      fetchClientCredentialsToken(),
+    ]);
+
+    expect(t1).toBe('shared');
+    expect(t2).toBe('shared');
+    expect(t3).toBe('shared');
     expect((global.fetch as any).mock.calls).toHaveLength(1);
   });
 
   it('throws when SPOTIFY_CLIENT_ID is missing', async () => {
     delete process.env.SPOTIFY_CLIENT_ID;
-    await expect(fetchClientCredentialsToken()).rejects.toThrow(/Spotify credentials/);
+    await expect(fetchClientCredentialsToken()).rejects.toThrow(/SPOTIFY_CLIENT_ID/);
+  });
+
+  it('throws when SPOTIFY_CLIENT_SECRET is missing', async () => {
+    delete process.env.SPOTIFY_CLIENT_SECRET;
+    await expect(fetchClientCredentialsToken()).rejects.toThrow(/SPOTIFY_CLIENT_SECRET/);
   });
 
   it('throws when token fetch returns non-ok', async () => {
     (global.fetch as any).mockResolvedValue({ ok: false, status: 401, text: async () => 'no' });
     await expect(fetchClientCredentialsToken()).rejects.toThrow(/401/);
+  });
+
+  it('throws when token response is missing access_token', async () => {
+    (global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: async () => ({ expires_in: 3600 }),
+    });
+    await expect(fetchClientCredentialsToken()).rejects.toThrow(/missing expected fields/);
   });
 });
