@@ -82,7 +82,7 @@ function mapSpotifyPlaylist(item: any): SpotifyPlaylist {
 export async function fetchUserPlaylists(userId: string): Promise<SpotifyPlaylist[]> {
   const token = await fetchClientCredentialsToken();
   const out: SpotifyPlaylist[] = [];
-  let url: string | null = `${API_BASE}/users/${userId}/playlists?limit=50`;
+  let url: string | null = `${API_BASE}/users/${encodeURIComponent(userId)}/playlists?limit=50`;
 
   while (url) {
     const res: Response = await fetch(url, {
