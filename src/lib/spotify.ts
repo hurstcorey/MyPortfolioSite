@@ -1,5 +1,7 @@
 import 'server-only';
-import type { SpotifyPlaylist } from './spotify.types';
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
+import type { SpotifyPlaylist, SpotifyPlaylistSnapshot } from './spotify.types';
 
 const ACCOUNTS_BASE = 'https://accounts.spotify.com';
 const API_BASE = 'https://api.spotify.com/v1';
@@ -99,4 +101,35 @@ export async function fetchUserPlaylists(userId: string): Promise<SpotifyPlaylis
   }
 
   return out;
+}
+
+export async function readSnapshotFallback(): Promise<SpotifyPlaylist[]> {
+  const snapshotPath = path.join(process.cwd(), 'data', 'spotify-playlists-snapshot.json');
+  const json = await fs.readFile(snapshotPath, 'utf-8');
+  const parsed = JSON.parse(json) as SpotifyPlaylistSnapshot;
+  return (parsed.playlists ?? []).map((p) => ({ ...p, source: 'spotify' as const }));
+}
+
+export async function fetchUserPlaylistsWithFallback(
+  userId: string,
+): Promise<SpotifyPlaylist[]> {
+  if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
+    try {
+      return await readSnapshotFallback();
+    } catch (err) {
+      console.warn('[spotify] snapshot read failed and no env vars set:', err);
+      return [];
+    }
+  }
+  try {
+    return await fetchUserPlaylists(userId);
+  } catch (err) {
+    console.warn('[spotify] live fetch failed, falling back to snapshot:', err);
+    try {
+      return await readSnapshotFallback();
+    } catch (snapErr) {
+      console.warn('[spotify] snapshot read also failed:', snapErr);
+      return [];
+    }
+  }
 }

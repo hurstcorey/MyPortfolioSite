@@ -3,6 +3,8 @@ import * as fs from 'node:fs/promises';
 import {
   fetchClientCredentialsToken,
   fetchUserPlaylists,
+  readSnapshotFallback,
+  fetchUserPlaylistsWithFallback,
   __resetTokenCacheForTests,
 } from './spotify';
 
@@ -219,5 +221,95 @@ describe('fetchUserPlaylists', () => {
       });
 
     await expect(fetchUserPlaylists('USER_X')).rejects.toThrow(/500/);
+  });
+});
+
+const SAMPLE_SNAPSHOT = JSON.stringify({
+  snapshotAt: '2026-05-06T00:00:00Z',
+  userId: 'USER_X',
+  playlists: [
+    {
+      source: 'spotify',
+      id: 'P_SNAP',
+      title: 'Cached Vibes',
+      description: '',
+      thumbnailUrl: null,
+      trackCount: 5,
+      ownerName: 'corey',
+      publicUrl: 'https://open.spotify.com/playlist/P_SNAP',
+      embedUrl: 'https://open.spotify.com/embed/playlist/P_SNAP',
+      publishedAt: '',
+    },
+  ],
+});
+
+describe('readSnapshotFallback', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('reads data/spotify-playlists-snapshot.json and returns the playlists array', async () => {
+    (fs.readFile as any).mockResolvedValue(SAMPLE_SNAPSHOT);
+    const result = await readSnapshotFallback();
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('P_SNAP');
+    expect(result[0].source).toBe('spotify');
+  });
+});
+
+describe('fetchUserPlaylistsWithFallback', () => {
+  beforeEach(() => {
+    process.env.SPOTIFY_CLIENT_ID = 'cid';
+    process.env.SPOTIFY_CLIENT_SECRET = 'csecret';
+    vi.stubGlobal('fetch', vi.fn());
+    vi.clearAllMocks();
+    __resetTokenCacheForTests();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    delete process.env.SPOTIFY_CLIENT_ID;
+    delete process.env.SPOTIFY_CLIENT_SECRET;
+  });
+
+  it('returns live data when fetch succeeds', async () => {
+    (global.fetch as any)
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ access_token: 'tok', expires_in: 3600 }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ items: [{ ...SAMPLE_PLAYLIST_ITEM, id: 'P_LIVE' }], next: null }),
+      });
+
+    const result = await fetchUserPlaylistsWithFallback('USER_X');
+    expect(result[0].id).toBe('P_LIVE');
+    expect(fs.readFile).not.toHaveBeenCalled();
+  });
+
+  it('falls back to snapshot when fetch fails', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockResolvedValue(SAMPLE_SNAPSHOT);
+
+    const result = await fetchUserPlaylistsWithFallback('USER_X');
+    expect(result[0].id).toBe('P_SNAP');
+  });
+
+  it('uses snapshot directly when SPOTIFY_CLIENT_ID is absent', async () => {
+    delete process.env.SPOTIFY_CLIENT_ID;
+    (fs.readFile as any).mockResolvedValue(SAMPLE_SNAPSHOT);
+
+    const result = await fetchUserPlaylistsWithFallback('USER_X');
+    expect(result[0].id).toBe('P_SNAP');
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it('returns [] when both fetch and snapshot fail', async () => {
+    (global.fetch as any).mockRejectedValue(new Error('network down'));
+    (fs.readFile as any).mockRejectedValue(new Error('ENOENT'));
+
+    const result = await fetchUserPlaylistsWithFallback('USER_X');
+    expect(result).toEqual([]);
   });
 });
