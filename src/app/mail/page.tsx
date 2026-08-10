@@ -1,107 +1,69 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useAuth } from "@/app/components/Mail/AuthProvider";
-
-interface MessageRow {
-  id: string;
-  created_at: string;
-  direction: "inbound" | "outbound";
-  from_email: string;
-  to_email: string;
-  subject: string | null;
-  read_status: boolean;
-}
+import useMessages from "@/app/components/Mail/useMessages";
+import Sidebar from "@/app/components/Mail/Sidebar";
+import MessageList from "@/app/components/Mail/MessageList";
+import MessageView from "@/app/components/Mail/MessageView";
+import ComposeModal from "@/app/components/Mail/ComposeModal";
+import type { Folder, Message } from "@/app/components/Mail/types";
 
 export default function MailPage() {
-  const { supabase, user, signOut } = useAuth();
-  const [messages, setMessages] = useState<MessageRow[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, signOut } = useAuth();
+  const inbox = useMessages("inbound");
+  const sent = useMessages("outbound");
 
-  const loadMessages = useCallback(async () => {
-    if (!supabase) return;
-    setLoading(true);
-    const { data, error: queryError } = await supabase
-      .from("messages")
-      .select(
-        "id, created_at, direction, from_email, to_email, subject, read_status",
-      )
-      .order("created_at", { ascending: false })
-      .limit(50);
-    if (queryError) {
-      setError(queryError.message);
-    } else {
-      setError(null);
-      setMessages((data as MessageRow[]) ?? []);
+  const [folder, setFolder] = useState<Folder>("inbox");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [composeOpen, setComposeOpen] = useState(false);
+
+  const active = folder === "inbox" ? inbox : sent;
+  const selected = useMemo(
+    () => active.messages.find((m) => m.id === selectedId) ?? null,
+    [active.messages, selectedId],
+  );
+  const unreadCount = inbox.messages.filter((m) => !m.read_status).length;
+
+  const handleFolderChange = (next: Folder) => {
+    setFolder(next);
+    setSelectedId(null);
+  };
+
+  const handleSelect = (message: Message) => {
+    setSelectedId(message.id);
+    if (message.direction === "inbound" && !message.read_status) {
+      inbox.markAsRead(message.id);
     }
-    setLoading(false);
-  }, [supabase]);
-
-  useEffect(() => {
-    loadMessages();
-  }, [loadMessages]);
+  };
 
   return (
-    <main className="min-h-screen bg-[#121212] text-white">
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <header className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">Inbox</h1>
-          <div className="flex items-center gap-4 text-sm text-[#ADB7BE]">
-            <span>{user?.email}</span>
-            <button
-              onClick={signOut}
-              className="border border-[#33353F] hover:border-primary-500 rounded-lg px-3 py-1.5"
-            >
-              Sign out
-            </button>
-          </div>
-        </header>
+    <main className="h-screen flex bg-[#121212] text-white">
+      <Sidebar
+        folder={folder}
+        onFolderChange={handleFolderChange}
+        onCompose={() => setComposeOpen(true)}
+        unreadCount={unreadCount}
+        userEmail={user?.email ?? null}
+        onSignOut={signOut}
+      />
 
-        {error && <p className="text-red-400 mb-4">{error}</p>}
-        {loading && <p className="text-[#ADB7BE]">Loading messages…</p>}
-        {!loading && messages.length === 0 && !error && (
-          <p className="text-[#ADB7BE]">No messages yet.</p>
-        )}
+      <section className="w-80 shrink-0 border-r border-[#33353F] flex flex-col">
+        <h1 className="px-4 py-4 text-lg font-semibold border-b border-[#33353F]">
+          {folder === "inbox" ? "Inbox" : "Sent"}
+        </h1>
+        <MessageList
+          messages={active.messages}
+          loading={active.loading}
+          error={active.error}
+          selectedId={selectedId}
+          onSelect={handleSelect}
+        />
+      </section>
 
-        <ul className="flex flex-col gap-2">
-          {messages.map((message) => (
-            <li
-              key={message.id}
-              className="bg-[#181818] border border-[#33353F] rounded-lg p-4"
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span
-                  className={
-                    message.read_status || message.direction === "outbound"
-                      ? "text-[#ADB7BE]"
-                      : "text-white font-semibold"
-                  }
-                >
-                  {message.direction === "inbound"
-                    ? message.from_email
-                    : `To: ${message.to_email}`}
-                </span>
-                <span className="text-xs text-[#ADB7BE] shrink-0">
-                  {new Date(message.created_at).toLocaleString()}
-                </span>
-              </div>
-              <p className="mt-1 text-sm">
-                {message.subject || "(no subject)"}
-              </p>
-              <span
-                className={`inline-block mt-2 text-xs rounded px-1.5 py-0.5 ${
-                  message.direction === "inbound"
-                    ? "bg-primary-900 text-primary-300"
-                    : "bg-secondary-900 text-secondary-300"
-                }`}
-              >
-                {message.direction}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <MessageView message={selected} />
+
+      <ComposeModal open={composeOpen} onClose={() => setComposeOpen(false)} />
     </main>
   );
 }
