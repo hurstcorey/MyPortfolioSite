@@ -41,7 +41,13 @@ Create `.env.local` (never commit):
 ```
 RESEND_API_KEY=your_key
 FROM_EMAIL=your_email@example.com
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
+
+The `NEXT_PUBLIC_SUPABASE_*` vars power the `/mail` email client (Supabase
+Auth + database). When absent, the app still builds and `/mail` shows a
+"not configured" notice.
 
 ## Conventions
 
