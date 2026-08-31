@@ -8,6 +8,7 @@ Short credits: this project was initially developed following a community tutori
 
 - **Projects** — filterable project cards with live preview and GitHub links
 - **My Playlists** — horizontal-scroll carousel on the home page; full browsable grid at `/lists` with search, inline video player, and deep-link navigation
+- **Commander Decks** — grid of Magic: The Gathering decks pulled from a public Archidekt folder; each card shows the commander's card art and links to the deck on Archidekt
 - **Contact** — email form powered by Resend (optional)
 - **Responsive** — mobile-first layout with Framer Motion animations
 
@@ -29,6 +30,7 @@ Short credits: this project was initially developed following a community tutori
    |---|---|---|
    | `YOUTUBE_API_KEY` | For live data | YouTube Data API v3 key (server-only) |
    | `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` | Yes | Your YouTube channel ID |
+   | `NEXT_PUBLIC_ARCHIDEKT_FOLDER_ID` | No | Public Archidekt folder ID for the deck grid (defaults to `1708348`) |
    | `RESEND_API_KEY` | For contact form | Resend email API key |
    | `FROM_EMAIL` | For contact form | Sender address for contact emails |
 
@@ -52,6 +54,7 @@ Short credits: this project was initially developed following a community tutori
 | `pnpm run lint` | Run ESLint |
 | `pnpm run test` | Run Vitest test suite |
 | `pnpm run snapshot:youtube` | Refresh `data/playlists-snapshot.json` from the YouTube API |
+| `pnpm run snapshot:archidekt` | Refresh `data/decks-snapshot.json` from the Archidekt API |
 | `pnpm run docker:local` | Build and run the production Docker image locally on port 3000 |
 
 ## YouTube playlist data
@@ -66,6 +69,25 @@ pnpm run snapshot:youtube
 ```
 
 Commit the updated `data/playlists-snapshot.json` to keep the fallback current.
+
+## Archidekt deck data
+
+The **Commander Decks** section on the home page reads a public Archidekt folder
+(`https://archidekt.com/api/decks/folders/<id>/`) at build time and on each ISR
+revalidation. No API key is needed. Private and unlisted decks are skipped, and
+decks are ordered most recently updated first.
+
+Archidekt exposes each deck's commander as an art crop; the full card image is the
+same URL with a `_normal.jpg` suffix, so no per-deck request is required. If the
+full card image is missing for a printing, the card falls back to the art crop.
+
+If the request fails, the section falls back to `data/decks-snapshot.json`:
+
+```bash
+pnpm run snapshot:archidekt
+```
+
+Commit the updated `data/decks-snapshot.json` to keep the fallback current.
 
 ## Local Docker preview
 
