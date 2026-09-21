@@ -1,0 +1,204 @@
+{
+  "snapshotAt": "2026-08-31T02:52:30.271Z",
+  "folderId": "1708348",
+  "decks": [
+    {
+      "id": 25591247,
+      "name": "The Accuser",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/2ef59aa9-f5e1-413a-869b-d287db95efd0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/2ef59aa9-f5e1-413a-869b-d287db95efd0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25591247",
+      "updatedAt": "2026-08-29T14:05:53.397495Z"
+    },
+    {
+      "id": 25636565,
+      "name": "Sidisi Reanimator Queen",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/ktk/ffa2b070-952e-4242-83bb-3e73135ceeeb_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/ktk/ffa2b070-952e-4242-83bb-3e73135ceeeb_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25636565",
+      "updatedAt": "2026-08-27T14:24:07.344983Z"
+    },
+    {
+      "id": 25174265,
+      "name": "Heniz's Toolbox",
+      "size": 99,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/ncc/ee228dcc-3170-4c24-80bc-28bcee07cb43_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/ncc/ee228dcc-3170-4c24-80bc-28bcee07cb43_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25174265",
+      "updatedAt": "2026-08-23T19:28:10.864934Z"
+    },
+    {
+      "id": 25560564,
+      "name": "Twins",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/b9c11061-bb34-4904-b9f1-ea106b517bbe_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/b9c11061-bb34-4904-b9f1-ea106b517bbe_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25560564",
+      "updatedAt": "2026-08-20T16:41:06.586132Z"
+    },
+    {
+      "id": 25048446,
+      "name": "Sefris",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/oafc/87464c37-09cf-4fc7-ad71-9c35c3b7ff76_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/oafc/87464c37-09cf-4fc7-ad71-9c35c3b7ff76_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25048446",
+      "updatedAt": "2026-08-07T17:15:06.890458Z"
+    },
+    {
+      "id": 25077890,
+      "name": "Tier 3 MonoRed Tersa by Commander challenge",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/tdm/99e96b34-b1c4-4647-a38e-2cf1aedaaace_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/tdm/99e96b34-b1c4-4647-a38e-2cf1aedaaace_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25077890",
+      "updatedAt": "2026-08-07T00:16:05.933169Z"
+    },
+    {
+      "id": 24339574,
+      "name": "Jon, Crappy Neighbor",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/clb/bfddb61e-986f-4557-819d-d6c0ca85c74a_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/clb/bfddb61e-986f-4557-819d-d6c0ca85c74a_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24339574",
+      "updatedAt": "2026-07-29T02:30:41.238640Z"
+    },
+    {
+      "id": 24655606,
+      "name": "Everything, Everywhere, All at once",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/cmm/84238335-e08c-421c-b9b9-70a679ff2967_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/cmm/84238335-e08c-421c-b9b9-70a679ff2967_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24655606",
+      "updatedAt": "2026-07-24T19:19:47.099130Z"
+    },
+    {
+      "id": 24397431,
+      "name": "R&D Engine v6",
+      "size": 99,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/fdn/8f95f753-bbaa-4282-9cd9-f1737136fc9e_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/fdn/8f95f753-bbaa-4282-9cd9-f1737136fc9e_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24397431",
+      "updatedAt": "2026-07-24T17:24:51.968346Z"
+    },
+    {
+      "id": 24305679,
+      "name": "R&D Engine",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/fdn/8f95f753-bbaa-4282-9cd9-f1737136fc9e_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/fdn/8f95f753-bbaa-4282-9cd9-f1737136fc9e_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24305679",
+      "updatedAt": "2026-07-24T17:24:34.617487Z"
+    },
+    {
+      "id": 24636831,
+      "name": "Rakdos - No Pain, No Gain v2",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24636831",
+      "updatedAt": "2026-07-24T17:20:14.554224Z"
+    },
+    {
+      "id": 24608659,
+      "name": "Glisstening v2",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mbs/755e0fbf-4f00-4b05-a535-27e78e96d6b6_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mbs/755e0fbf-4f00-4b05-a535-27e78e96d6b6_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24608659",
+      "updatedAt": "2026-07-23T03:24:11.705803Z"
+    },
+    {
+      "id": 24521590,
+      "name": "Glisstening",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/pmbs/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/pmbs/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24521590",
+      "updatedAt": "2026-07-23T02:26:59.826369Z"
+    },
+    {
+      "id": 24575208,
+      "name": "Mister Negative | Game Knights #80",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/spm/2c9cb13d-55ff-4e26-aa49-755f8bcebc11_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/spm/2c9cb13d-55ff-4e26-aa49-755f8bcebc11_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24575208",
+      "updatedAt": "2026-07-22T02:39:46.707439Z"
+    },
+    {
+      "id": 24273402,
+      "name": "Saskia The Unyielding Combatant",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/c16/5b483db6-b614-4af1-820a-42a4ee0c8707_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/c16/5b483db6-b614-4af1-820a-42a4ee0c8707_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24273402",
+      "updatedAt": "2026-07-16T16:39:47.002944Z"
+    },
+    {
+      "id": 24254004,
+      "name": "? Rogue Lite",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/clb/c876f9b3-b4f6-4177-9c43-443ae2a028d0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/clb/c876f9b3-b4f6-4177-9c43-443ae2a028d0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24254004",
+      "updatedAt": "2026-07-11T00:59:51.158820Z"
+    },
+    {
+      "id": 24225029,
+      "name": "Kros, Counter Defense Contractor",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/ncc/12e71d52-5c75-4798-9fe7-8a34a2bf0c9a_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/ncc/12e71d52-5c75-4798-9fe7-8a34a2bf0c9a_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24225029",
+      "updatedAt": "2026-07-11T00:51:28.839384Z"
+    },
+    {
+      "id": 24228239,
+      "name": "Passive Aggressive",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/cm2/2e89ce6a-6bc9-427f-a8b2-c07a9fc3218f_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/cm2/2e89ce6a-6bc9-427f-a8b2-c07a9fc3218f_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24228239",
+      "updatedAt": "2026-07-10T03:03:17.988665Z"
+    },
+    {
+      "id": 24200463,
+      "name": "Sefris of the Hidden Dungeon Ways",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/afc/d30255f6-e058-476a-b377-2ee4c9178ed1_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/afc/d30255f6-e058-476a-b377-2ee4c9178ed1_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24200463",
+      "updatedAt": "2026-07-09T13:00:01.291821Z"
+    },
+    {
+      "id": 24068335,
+      "name": "Morophon - Everything bagel",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/plst/9f4b771e-1f3a-406c-b92f-4c0664edacb5_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/plst/9f4b771e-1f3a-406c-b92f-4c0664edacb5_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24068335",
+      "updatedAt": "2026-07-08T12:06:24.076683Z"
+    },
+    {
+      "id": 24137634,
+      "name": "Morska, Undersea Sleuth - Get a Clue",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/ae9ccfec-05c6-469e-b1dd-dfbafa1e927f_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/ae9ccfec-05c6-469e-b1dd-dfbafa1e927f_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24137634",
+      "updatedAt": "2026-07-08T12:05:22.589864Z"
+    },
+    {
+      "id": 24121237,
+      "name": "Rakdos - No Pain, No Gain",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/24121237",
+      "updatedAt": "2026-07-08T01:43:01.134936Z"
+    }
+  ]
+}

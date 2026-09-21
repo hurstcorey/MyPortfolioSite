@@ -29,6 +29,8 @@ pnpm run lint         # Run ESLint
 - `src/app/layout.tsx` - Root layout with metadata and fonts
 - `src/app/components/Projects/projectsData.ts` - Project data array
 - `src/app/components/Utilities/EmailSection.tsx` - Contact form (posts to `/api/send`)
+- `src/lib/archidekt.ts` - Archidekt folder fetch + snapshot fallback for the deck grid
+- `src/app/components/Mtg/MtgSection.tsx` - "Commander Decks" section (`#gamer` on the home page)
 
 ### Client/Server Boundaries
 Most components are client components (`"use client"` directive) for interactivity. The API route (`src/app/api/send/route.tsx`) handles server-side email sending.
@@ -43,7 +45,12 @@ RESEND_API_KEY=your_key
 FROM_EMAIL=your_email@example.com
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_ARCHIDEKT_FOLDER_ID=1708348
 ```
+
+`NEXT_PUBLIC_ARCHIDEKT_FOLDER_ID` is optional (defaults to `1708348`); the
+Archidekt API needs no key, and the deck grid falls back to
+`data/decks-snapshot.json` when the request fails.
 
 The `NEXT_PUBLIC_SUPABASE_*` vars power the `/mail` email client (Supabase
 Auth + database). When absent, the app still builds and `/mail` shows a
