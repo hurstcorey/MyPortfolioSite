@@ -4,24 +4,25 @@ import type { ActiveSource } from "@/lib/playlists.sort";
 
 interface SourceTabsProps {
   active: ActiveSource;
-  counts: { all: number; youtube: number; spotify: number };
+  counts: Record<ActiveSource, number>;
   onChange: (next: ActiveSource) => void;
 }
 
-const TABS: Array<{ key: ActiveSource; label: string }> = [
+export const SOURCE_TABS: Array<{ key: ActiveSource; label: string }> = [
   { key: "all", label: "All" },
   { key: "youtube", label: "YouTube" },
   { key: "spotify", label: "Spotify" },
+  { key: "mtg", label: "MTG Decks" },
 ];
 
 const SourceTabs: React.FC<SourceTabsProps> = ({ active, counts, onChange }) => {
   return (
     <div
       role="tablist"
-      aria-label="Playlist source"
-      className="flex justify-center gap-2 mb-6"
+      aria-label="List source"
+      className="flex flex-wrap justify-center gap-2 mb-6"
     >
-      {TABS.map((tab) => {
+      {SOURCE_TABS.map((tab) => {
         const isActive = active === tab.key;
         return (
           <button

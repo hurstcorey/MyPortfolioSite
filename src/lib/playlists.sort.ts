@@ -12,7 +12,8 @@ export function sortPlaylists(
       a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }),
     );
   }
-  if (active === 'youtube') {
+  if (active === 'youtube' || active === 'mtg') {
+    // newest first: publish date for YouTube, last edit for MTG decks
     return copy.sort((a, b) => (b.publishedAt > a.publishedAt ? 1 : -1));
   }
   // 'spotify' → preserve incoming order

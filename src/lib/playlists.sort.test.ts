@@ -26,7 +26,38 @@ const sp = (id: string, title: string): Playlist => ({
   publishedAt: '',
 });
 
+const mtg = (id: string, title: string, publishedAt: string): Playlist => ({
+  source: 'mtg',
+  id,
+  title,
+  description: '',
+  thumbnailUrl: '',
+  cardCount: 100,
+  publicUrl: '',
+  publishedAt,
+});
+
 describe('sortPlaylists', () => {
+  it('sorts MTG tab by last edit desc (newest first)', () => {
+    const input: Playlist[] = [
+      mtg('mtg-1', 'A', '2024-01-01T00:00:00Z'),
+      mtg('mtg-2', 'B', '2026-05-01T00:00:00Z'),
+      mtg('mtg-3', 'C', '2025-06-01T00:00:00Z'),
+    ];
+    const result = sortPlaylists(input, 'mtg').map((p) => p.id);
+    expect(result).toEqual(['mtg-2', 'mtg-3', 'mtg-1']);
+  });
+
+  it('interleaves all three sources alphabetically on the All tab', () => {
+    const input: Playlist[] = [
+      mtg('mtg-1', 'Tana', '2025-01-01'),
+      yt('y1', 'Zelda', '2025-01-01'),
+      sp('s1', 'Ambient'),
+    ];
+    const result = sortPlaylists(input, 'all').map((p) => p.title);
+    expect(result).toEqual(['Ambient', 'Tana', 'Zelda']);
+  });
+
   it('sorts All tab alphabetically by title, case-insensitive', () => {
     const input: Playlist[] = [
       yt('y1', 'Zelda Lore', '2025-01-01'),

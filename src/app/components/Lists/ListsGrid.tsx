@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import PlaylistCard from "./PlaylistCard";
 import PlaylistDetail from "./PlaylistDetail";
 import PlaylistSearchBar from "./PlaylistSearchBar";
-import SourceTabs from "./SourceTabs";
+import SourceTabs, { SOURCE_TABS } from "./SourceTabs";
 import { sortPlaylists, type ActiveSource } from "@/lib/playlists.sort";
-import type { Playlist } from "@/lib/playlists.types";
+import type { ExpandablePlaylist, Playlist } from "@/lib/playlists.types";
 
 interface ListsGridProps {
   playlists: Playlist[];
@@ -26,28 +26,32 @@ const ListsGrid: React.FC<ListsGridProps> = ({ playlists }) => {
   const [activeSource, setActiveSource] = useState<ActiveSource>("all");
   const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ?? "";
 
-  const counts = useMemo(
-    () => ({
-      all: playlists.length,
-      youtube: playlists.filter((p) => p.source === "youtube").length,
-      spotify: playlists.filter((p) => p.source === "spotify").length,
-    }),
-    [playlists],
-  );
+  const counts = useMemo(() => {
+    const out = {} as Record<ActiveSource, number>;
+    for (const tab of SOURCE_TABS) {
+      out[tab.key] =
+        tab.key === "all"
+          ? playlists.length
+          : playlists.filter((p) => p.source === tab.key).length;
+    }
+    return out;
+  }, [playlists]);
 
   // Hash precedence: known source values set the tab; otherwise treat as
   // playlist ID and set both the matching tab and the active card.
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
-    if (hash === "all" || hash === "youtube" || hash === "spotify") {
-      setActiveSource(hash);
+    const tab = SOURCE_TABS.find((t) => t.key === hash);
+    if (tab) {
+      setActiveSource(tab.key);
       return;
     }
     const match = playlists.find((p) => p.id === hash);
     if (match) {
       setActiveSource(match.source);
-      setActiveId(match.id);
+      // MTG decks link out instead of expanding, so only the tab is selected.
+      if (match.source !== "mtg") setActiveId(match.id);
     }
   }, [playlists]);
 
@@ -85,13 +89,20 @@ const ListsGrid: React.FC<ListsGridProps> = ({ playlists }) => {
     setActiveId((prev) => (prev === playlistId ? null : playlistId));
   };
 
-  const activePlaylist =
-    activeId !== null ? filtered.find((p) => p.id === activeId) ?? null : null;
+  const activePlaylist: ExpandablePlaylist | null =
+    activeId !== null
+      ? (filtered.find(
+          (p): p is ExpandablePlaylist => p.id === activeId && p.source !== "mtg",
+        ) ?? null)
+      : null;
+
+  const activeTabLabel =
+    SOURCE_TABS.find((t) => t.key === activeSource)?.label ?? "";
 
   return (
     <section id="lists">
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Playlists
+        My Lists
       </h2>
 
       <SourceTabs active={activeSource} counts={counts} onChange={handleSourceChange} />
@@ -102,13 +113,13 @@ const ListsGrid: React.FC<ListsGridProps> = ({ playlists }) => {
 
       {filtered.length === 0 && query !== "" && (
         <p className="text-center text-[#ADB7BE]">
-          No playlists match &ldquo;{query}&rdquo;.
+          Nothing matches &ldquo;{query}&rdquo;.
         </p>
       )}
 
-      {filtered.length === 0 && query === "" && activeSource === "spotify" && (
+      {filtered.length === 0 && query === "" && activeSource !== "all" && (
         <p className="text-center text-[#ADB7BE]">
-          Couldn&apos;t load Spotify playlists right now.
+          Couldn&apos;t load {activeTabLabel} right now.
         </p>
       )}
 

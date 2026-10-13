@@ -5,13 +5,16 @@ import Footer from "../components/Footer";
 import ListsGrid from "../components/Lists/ListsGrid";
 import { fetchChannelPlaylistsWithFallback, readSnapshotFallback as readYouTubeSnapshot } from "@/lib/youtube";
 import { fetchUserPlaylistsWithFallback } from "@/lib/spotify";
+import { fetchFolderDecksWithFallback } from "@/lib/archidekt";
+import { toMtgListItem } from "@/lib/mtg.playlist";
 import type { Playlist } from "@/lib/playlists.types";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Playlists | Corey Hurst",
-  description: "YouTube and Spotify playlists curated by Corey Hurst.",
+  title: "Lists | Corey Hurst",
+  description:
+    "YouTube playlists, Spotify playlists and Magic: The Gathering decks curated by Corey Hurst.",
 };
 
 async function loadYouTube(): Promise<Playlist[]> {
@@ -40,13 +43,22 @@ async function loadSpotify(): Promise<Playlist[]> {
   return fetchUserPlaylistsWithFallback(userId);
 }
 
+async function loadMtg(): Promise<Playlist[]> {
+  try {
+    return (await fetchFolderDecksWithFallback()).map(toMtgListItem);
+  } catch {
+    return [];
+  }
+}
+
 export default async function ListsPage() {
-  const [youtubePlaylists, spotifyPlaylists] = await Promise.all([
+  const [youtubePlaylists, spotifyPlaylists, mtgDecks] = await Promise.all([
     loadYouTube(),
     loadSpotify(),
+    loadMtg(),
   ]);
 
-  const playlists: Playlist[] = [...youtubePlaylists, ...spotifyPlaylists];
+  const playlists: Playlist[] = [...youtubePlaylists, ...spotifyPlaylists, ...mtgDecks];
 
   return (
     <main className="flex min-h-screen flex-col bg-[#121212]">

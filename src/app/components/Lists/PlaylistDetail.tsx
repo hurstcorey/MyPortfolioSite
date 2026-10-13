@@ -5,11 +5,11 @@ import Link from "next/link";
 import { ArrowTopRightOnSquareIcon, BookmarkIcon } from "@heroicons/react/24/outline";
 import YouTubeEmbed from "./YouTubeEmbed";
 import SpotifyEmbed from "./SpotifyEmbed";
-import type { Playlist } from "@/lib/playlists.types";
+import type { ExpandablePlaylist, Playlist } from "@/lib/playlists.types";
 import type { PlaylistVideo } from "@/lib/youtube.types";
 
 interface PlaylistDetailProps {
-  playlist: Playlist;
+  playlist: ExpandablePlaylist;
   channelId: string;
 }
 
