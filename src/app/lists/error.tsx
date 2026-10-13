@@ -12,10 +12,10 @@ export default function Error({
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#121212] px-6 text-center">
       <h2 className="text-3xl font-bold text-white mb-4">
-        Playlists are temporarily unavailable
+        Lists are temporarily unavailable
       </h2>
       <p className="text-[#ADB7BE] mb-6 max-w-md">
-        I couldn&apos;t reach YouTube and there&apos;s no local snapshot to show.
+        Something went wrong loading my lists and there&apos;s no local snapshot to show.
         Please try again in a few minutes.
       </p>
       <div className="flex gap-3">

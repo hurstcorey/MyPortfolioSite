@@ -8,9 +8,12 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@8 --activate
 
 # Build-time env vars baked into the Next.js bundle.
-# Pass via: docker build --build-arg NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=UC...
+# Pass via: docker build --build-arg NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=UC... \
+#                         --build-arg NEXT_PUBLIC_SPOTIFY_USER_ID=...
 ARG NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=""
 ENV NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=$NEXT_PUBLIC_YOUTUBE_CHANNEL_ID
+ARG NEXT_PUBLIC_SPOTIFY_USER_ID=""
+ENV NEXT_PUBLIC_SPOTIFY_USER_ID=$NEXT_PUBLIC_SPOTIFY_USER_ID
 
 # Install deps. The project intentionally doesn't track a lockfile
 # (.npmrc has shrinkwrap=false), so --frozen-lockfile would fail.

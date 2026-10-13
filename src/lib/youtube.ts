@@ -34,6 +34,7 @@ function normalizePlaylist(item: any): Playlist {
   const thumbnailUrl =
     thumbnails.medium?.url ?? thumbnails.default?.url ?? thumbnails.high?.url ?? '';
   return {
+    source: 'youtube',
     id: item.id,
     title: item.snippet?.title ?? '',
     description: item.snippet?.description ?? '',
@@ -78,7 +79,10 @@ export async function readSnapshotFallback(): Promise<Playlist[]> {
   const snapshotPath = path.join(process.cwd(), 'data', 'playlists-snapshot.json');
   const json = await fs.readFile(snapshotPath, 'utf-8');
   const parsed = JSON.parse(json) as PlaylistSnapshot;
-  return parsed.playlists.map(({ videos: _videos, ...playlist }) => playlist);
+  return parsed.playlists.map(({ videos: _videos, ...playlist }) => ({
+    ...playlist,
+    source: 'youtube' as const,
+  }));
 }
 
 export async function readSnapshotPlaylistVideos(playlistId: string): Promise<PlaylistVideo[]> {

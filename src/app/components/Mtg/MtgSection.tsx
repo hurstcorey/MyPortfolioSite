@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchFolderDecksWithFallback, folderUrl } from "@/lib/archidekt";
 import DeckCard from "./DeckCard";
+import HorizontalScroller from "../Utilities/HorizontalScroller";
 import type { MtgDeck } from "@/lib/archidekt.types";
 
 const MtgSection = async () => {
@@ -22,11 +23,13 @@ const MtgSection = async () => {
         {decks.length} Magic: The Gathering decks I brew and play. Click any commander to open the list on Archidekt.
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+      <HorizontalScroller ariaLabel="Commander decks">
         {decks.map((deck) => (
-          <DeckCard key={deck.id} deck={deck} />
+          <div key={deck.id} className="flex-none w-[160px] md:w-[200px] pt-2">
+            <DeckCard deck={deck} />
+          </div>
         ))}
-      </div>
+      </HorizontalScroller>
 
       <div className="text-center mt-8">
         <a

@@ -8,10 +8,10 @@ import MenuOverlay from "./MenuOverlay";
 const navLinks = [
   { title: "My Story", path: "/#mystory" },
   { title: "Engineer", path: "/#engineer" },
-  { title: "Writer", path: "/#writer" },
-  { title: "Gamer", path: "/#gamer" },
-  { title: "Artist", path: "/#artist" },
   { title: "Projects", path: "/#projects" },
+  { title: "Artist", path: "/#artist" },
+  { title: "Gamer", path: "/#gamer" },
+  { title: "Writer", path: "/#writer" },
   { title: "Lists", path: "/#lists" },
   { title: "Contact", path: "/#contact" },
 ];

@@ -33,9 +33,9 @@ const PlaylistSearchBar: React.FC<PlaylistSearchBarProps> = ({
         type="search"
         value={local}
         onChange={(e) => setLocal(e.target.value)}
-        placeholder="Search playlists…"
+        placeholder="Search lists…"
         className="w-full bg-[#181818] border border-[#33353F] rounded-lg pl-10 pr-4 py-2 text-white placeholder:text-[#6b7280] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-        aria-label="Search playlists"
+        aria-label="Search lists"
       />
     </div>
   );
