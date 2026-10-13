@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Build and run the portfolio site in Docker locally.
 #
-# Reads YOUTUBE_API_KEY, NEXT_PUBLIC_YOUTUBE_CHANNEL_ID, RESEND_API_KEY,
+# Reads YOUTUBE_API_KEY, NEXT_PUBLIC_YOUTUBE_CHANNEL_ID,
+# NEXT_PUBLIC_SPOTIFY_USER_ID, RESEND_API_KEY,
 # and FROM_EMAIL from .env.local. Server-only vars are passed at runtime;
 # NEXT_PUBLIC_* vars are passed as build args (Next.js inlines them).
 
@@ -43,6 +44,7 @@ echo "▶ Building ${IMAGE}..."
 docker build \
   ${CACHE_FLAG} \
   --build-arg "NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=${NEXT_PUBLIC_YOUTUBE_CHANNEL_ID}" \
+  --build-arg "NEXT_PUBLIC_SPOTIFY_USER_ID=${NEXT_PUBLIC_SPOTIFY_USER_ID:-}" \
   -t "${IMAGE}" \
   .
 
