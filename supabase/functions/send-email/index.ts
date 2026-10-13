@@ -121,9 +121,11 @@ Deno.serve(async (req) => {
 
   if (error) {
     // The email already went out; surface the bookkeeping failure so the
-    // frontend can warn rather than silently losing the sent record.
+    // frontend can warn rather than silently losing the sent record. This must
+    // be a 2xx: functions.invoke drops the body on non-2xx, so the client could
+    // not see stored:false and the user would retry and send a duplicate.
     console.error("Email sent but failed to store record:", error);
-    return json({ sent: true, resend_id: resendId, stored: false }, 500);
+    return json({ sent: true, resend_id: resendId, stored: false }, 200);
   }
 
   return json({ sent: true, resend_id: resendId, id: row.id }, 201);
