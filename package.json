@@ -10,6 +10,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "snapshot:youtube": "node scripts/snapshot-youtube.mjs",
+    "snapshot:spotify": "node scripts/snapshot-spotify.mjs",
+    "snapshot:archidekt": "node scripts/snapshot-archidekt.mjs",
+    "snapshot:blog": "node scripts/snapshot-blog.mjs",
     "docker:local": "bash scripts/docker-local.sh"
   },
   "dependencies": {
@@ -20,13 +23,13 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.15",
     "framer-motion": "^10.16.1",
-    "next": "^16.2.11",
-    "postcss": "^8.5.23",
+    "next": "^16.3.8",
+    "postcss": "^8.5.29",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-type-animation": "^3.1.0",
     "resend": "^1.0.0",
-    "sharp": "^0.35.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.1",
     "three": "^0.184.0"
   },
@@ -36,7 +39,7 @@
     "@vitest/ui": "^1.6.1",
     "dotenv": "^16.4.0",
     "typescript": "^5.3.0",
-    "vitest": "^3.2.6"
+    "vitest": "^5.0.3"
   },
   "packageManager": "pnpm@8.8.0",
   "engines": {
