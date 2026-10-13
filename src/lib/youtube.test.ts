@@ -68,6 +68,7 @@ describe('fetchChannelPlaylists', () => {
 
     expect(result).toEqual([
       {
+        source: 'youtube',
         id: 'PL123',
         title: 'Gaming Highlights',
         description: 'Best moments from streams',
@@ -226,6 +227,7 @@ describe('fetchChannelPlaylistsWithFallback', () => {
 
     const result = await fetchChannelPlaylistsWithFallback('UC_TEST');
     expect(result[0].id).toBe('PL_CACHED');
+    expect(result[0].source).toBe('youtube');
     expect(result[0]).not.toHaveProperty('videos');
   });
 

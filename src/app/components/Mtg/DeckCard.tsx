@@ -21,10 +21,11 @@ const DeckCard = ({ deck }: { deck: MtgDeck }) => {
             src={src}
             alt={`Commander for ${deck.name}`}
             fill
-            sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+            sizes="200px"
             className="object-cover"
             onError={() => setSrc(deck.artCropUrl)}
             unoptimized
+            draggable={false}
           />
         ) : (
           <div className="w-full h-full bg-[#33353F]" />

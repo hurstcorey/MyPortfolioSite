@@ -97,7 +97,7 @@ To test the production build locally (mirrors the deployed environment):
 pnpm run docker:local
 ```
 
-This builds the Alpine-based Docker image and runs it on http://localhost:3000. Requires `.env.local` to be present. `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` is baked in at build time; all other secrets are injected at runtime.
+This builds the Alpine-based Docker image and runs it on http://localhost:3000. Requires `.env.local` to be present. `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` and `NEXT_PUBLIC_SPOTIFY_USER_ID` are baked in at build time; all other secrets are injected at runtime.
 
 ## Dependencies (high level)
 
