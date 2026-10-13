@@ -23,6 +23,11 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Keep in-page nav targets clear of the fixed navbar. */
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

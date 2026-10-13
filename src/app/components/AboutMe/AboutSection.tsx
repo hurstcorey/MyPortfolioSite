@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SmartLink from "../Utilities/SmartLink";
 import TabButton from "../TabButton";
+import { NAV_HASH_EVENT } from "../Navigation/NavLink";
 
 const TAB_DATA = [
   {
@@ -62,6 +63,25 @@ const AboutSection = () => {
     setTab(id);
     };
 
+  // The nav's "Engineer" link (#engineer) points at the Skills tab. Handle it on
+  // load (arriving from another page) and on in-page nav clicks, which don't fire
+  // hashchange because Next updates the URL with pushState.
+  useEffect(() => {
+    const showSkillsForEngineer = (hash: string) => {
+      if (hash === "engineer") setTab("skills");
+    };
+    showSkillsForEngineer(window.location.hash.slice(1));
+    const onNavHash = (e: Event) =>
+      showSkillsForEngineer((e as CustomEvent<string>).detail);
+    const onHashChange = () => showSkillsForEngineer(window.location.hash.slice(1));
+    window.addEventListener(NAV_HASH_EVENT, onNavHash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => {
+      window.removeEventListener(NAV_HASH_EVENT, onNavHash);
+      window.removeEventListener("hashchange", onHashChange);
+    };
+  }, []);
+
 
 const selectedTab = TAB_DATA.find((t) => t.id === tab);
 const tabContent = selectedTab ? selectedTab.content : null;
@@ -80,7 +100,7 @@ const tabContent = selectedTab ? selectedTab.content : null;
             looking to expand my knowledge and skill set. I am a team player and
             I am excited to work with others to create amazing applications.
           </p>
-          <div className="flex flex-row justify-start mt-8">
+          <div id="engineer" className="flex flex-row justify-start mt-8 scroll-mt-28">
             <TabButton
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
