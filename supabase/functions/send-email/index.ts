@@ -15,16 +15,16 @@
 //                 thread_id?: string (uuid) }
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { corsHeaders } from "../_shared/cors.ts";
-
-function json(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
-  });
-}
+import { corsHeadersFor } from "../_shared/cors.ts";
 
 Deno.serve(async (req) => {
+  const corsHeaders = corsHeadersFor(req);
+  const json = (body: unknown, status = 200): Response =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }

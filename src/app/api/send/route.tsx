@@ -27,11 +27,22 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { email?: unknown; subject?: unknown; message?: unknown };
+  let body: {
+    email?: unknown;
+    subject?: unknown;
+    message?: unknown;
+    website?: unknown;
+  };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  // Honeypot field: real visitors never see it, so a value means a bot. Answer
+  // as if it worked so the bot has no signal to adapt to.
+  if (typeof body.website === "string" && body.website.trim() !== "") {
+    return NextResponse.json({ id: "ok" });
   }
 
   const { email, subject, message } = body;
@@ -63,10 +74,12 @@ export async function POST(req: Request) {
     // Deliver only to the site owner, with the visitor's address as reply-to.
     // Mailing a caller-supplied recipient would let anyone relay arbitrary
     // content through this domain and burn its sending reputation.
-    const result = await new Resend(process.env.RESEND_API_KEY).emails.send({
+    const { data, error: sendError } = await new Resend(
+      process.env.RESEND_API_KEY,
+    ).emails.send({
       from: fromEmail,
       to: [fromEmail],
-      reply_to: email,
+      replyTo: email,
       subject: `[Portfolio] ${subject}`,
       react: (
         <>
@@ -77,17 +90,17 @@ export async function POST(req: Request) {
       ),
     });
 
-    // resend@1 resolves with the error payload instead of throwing when the
-    // API rejects a request, so a returned id is the only success signal.
-    if (!result?.id) {
-      console.error("[api/send] Resend error:", result);
+    // Resend resolves with { data, error } instead of throwing when the API
+    // rejects a request, so a returned id is the only success signal.
+    if (sendError || !data?.id) {
+      console.error("[api/send] Resend error:", sendError);
       return NextResponse.json(
         { error: "Failed to send email" },
         { status: 502 },
       );
     }
 
-    return NextResponse.json({ id: result.id });
+    return NextResponse.json({ id: data.id });
   } catch (error) {
     console.error("[api/send] error:", error);
     return NextResponse.json(
