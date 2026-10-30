@@ -7,11 +7,25 @@ type Bucket = { count: number; resetAt: number };
 const buckets = new Map<string, Bucket>();
 const MAX_TRACKED_KEYS = 5000;
 
+// Callers control the left side of x-forwarded-for: CloudFront and most proxies
+// append the address they saw to whatever the client sent, so the first entry
+// can be rotated per request to dodge the limiter. Prefer headers the edge sets
+// itself, then the rightmost entry, which is the one our own proxy appended.
 export function clientKey(req: Request): string {
-  // Behind Amplify/Vercel the platform sets x-forwarded-for; the first entry is
-  // the client address.
+  const vercel = req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim();
+  if (vercel) return vercel;
+
+  // CloudFront-Viewer-Address is "ip:port" (IPv6 addresses contain colons too,
+  // so the port is whatever follows the last one).
+  const viewer = req.headers.get("cloudfront-viewer-address")?.trim();
+  if (viewer) {
+    const colon = viewer.lastIndexOf(":");
+    return colon > 0 ? viewer.slice(0, colon) : viewer;
+  }
+
   const forwarded = req.headers.get("x-forwarded-for");
-  return forwarded?.split(",")[0]?.trim() || "unknown";
+  const last = forwarded?.split(",").pop()?.trim();
+  return last || req.headers.get("x-real-ip")?.trim() || "unknown";
 }
 
 export function rateLimit(

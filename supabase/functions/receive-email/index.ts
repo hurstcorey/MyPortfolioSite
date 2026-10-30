@@ -71,6 +71,36 @@ function timingSafeEqual(a: string, b: string): boolean {
 
 const MAX_BODY_BYTES = 5 * 1024 * 1024;
 
+// Reads the request body as UTF-8 text, counting wire bytes as they stream in
+// and cancelling as soon as the cap is crossed, so an oversized body (with or
+// without a Content-Length) is never fully buffered. Returns null when over.
+async function readBodyWithLimit(
+  req: Request,
+  maxBytes: number,
+): Promise<string | null> {
+  if (!req.body) return "";
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
+
 // Accepts either an address string ("Name <a@b.com>" or "a@b.com") or an
 // object like { email: "a@b.com" }, or an array of either.
 function extractEmail(value: unknown): string | null {
@@ -93,8 +123,8 @@ Deno.serve(async (req) => {
     return new Response("Payload too large", { status: 413 });
   }
 
-  const rawBody = await req.text();
-  if (rawBody.length > MAX_BODY_BYTES) {
+  const rawBody = await readBodyWithLimit(req, MAX_BODY_BYTES);
+  if (rawBody === null) {
     return new Response("Payload too large", { status: 413 });
   }
 
