@@ -68,6 +68,16 @@ Deno.serve(async (req) => {
       400,
     );
   }
+  if (
+    typeof to !== "string" ||
+    to.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to) ||
+    typeof subject !== "string" ||
+    subject.length > 998 ||
+    /[\r\n]/.test(subject)
+  ) {
+    return json({ error: "Invalid to or subject" }, 400);
+  }
 
   const fromEmail = Deno.env.get("FROM_EMAIL");
   const resendApiKey = Deno.env.get("RESEND_API_KEY");

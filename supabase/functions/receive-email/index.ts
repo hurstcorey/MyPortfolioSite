@@ -55,8 +55,21 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
 
   return signatureHeader
     .split(" ")
-    .some((part) => part.split(",")[1] === expected);
+    .some((part) => timingSafeEqual(part.split(",")[1] ?? "", expected));
 }
+
+// Length-independent comparison so signature checks don't leak match progress.
+function timingSafeEqual(a: string, b: string): boolean {
+  const aBytes = encoder.encode(a);
+  const bBytes = encoder.encode(b);
+  let diff = aBytes.length ^ bBytes.length;
+  for (let i = 0; i < bBytes.length; i++) {
+    diff |= (aBytes[i] ?? 0) ^ bBytes[i];
+  }
+  return diff === 0;
+}
+
+const MAX_BODY_BYTES = 5 * 1024 * 1024;
 
 // Accepts either an address string ("Name <a@b.com>" or "a@b.com") or an
 // object like { email: "a@b.com" }, or an array of either.
@@ -75,7 +88,15 @@ Deno.serve(async (req) => {
     return new Response("Method not allowed", { status: 405 });
   }
 
+  const declaredLength = Number(req.headers.get("content-length") ?? 0);
+  if (declaredLength > MAX_BODY_BYTES) {
+    return new Response("Payload too large", { status: 413 });
+  }
+
   const rawBody = await req.text();
+  if (rawBody.length > MAX_BODY_BYTES) {
+    return new Response("Payload too large", { status: 413 });
+  }
 
   if (!(await verifySignature(req, rawBody))) {
     return new Response("Invalid signature", { status: 401 });

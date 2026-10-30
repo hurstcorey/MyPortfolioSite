@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { clientKey, rateLimit } from "@/lib/rateLimit";
 
 const fromEmail = process.env.FROM_EMAIL ?? "";
 
@@ -8,6 +9,17 @@ const MAX_MESSAGE_LENGTH = 5000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
+  const limit = rateLimit(`send:${clientKey(req)}`, 5, 10 * 60 * 1000);
+  if (!limit.ok) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limit.retryAfterSeconds) },
+      },
+    );
+  }
+
   if (!process.env.RESEND_API_KEY || !fromEmail) {
     return NextResponse.json(
       { error: "Email is not configured" },
