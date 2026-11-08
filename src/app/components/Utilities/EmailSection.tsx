@@ -24,6 +24,7 @@ const EmailSection = () => {
       email: e.target.email.value,
       subject: e.target.subject.value,
       message: e.target.message.value,
+      website: e.target.website.value,
     };
     const JSONdata = JSON.stringify(data);
     const endpoint = "/api/send";
@@ -97,6 +98,20 @@ const EmailSection = () => {
           </p>
         ) : (
           <form className="flex flex-col" onSubmit={handleSubmit}>
+            {/* Honeypot: hidden from people, filled in by naive form bots. */}
+            <div
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+            >
+              <label htmlFor="website">Leave this field empty</label>
+              <input
+                name="website"
+                type="text"
+                id="website"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <div className="mb-6">
               <label
                 htmlFor="email"

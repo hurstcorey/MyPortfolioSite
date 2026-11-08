@@ -15,10 +15,9 @@ ENV NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=$NEXT_PUBLIC_YOUTUBE_CHANNEL_ID
 ARG NEXT_PUBLIC_SPOTIFY_USER_ID=""
 ENV NEXT_PUBLIC_SPOTIFY_USER_ID=$NEXT_PUBLIC_SPOTIFY_USER_ID
 
-# Install deps. The project intentionally doesn't track a lockfile
-# (.npmrc has shrinkwrap=false), so --frozen-lockfile would fail.
-COPY package.json ./
-RUN pnpm install --prefer-offline
+# Install exactly what pnpm-lock.yaml pins so image builds are reproducible.
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --prefer-offline
 
 # Copy source (respects .dockerignore)
 COPY . .
