@@ -11,6 +11,7 @@ const navLinks = [
   { title: "Projects", path: "/#projects" },
   { title: "Artist", path: "/#artist" },
   { title: "Gamer", path: "/#gamer" },
+  { title: "Tavern", path: "/#tavern" },
   { title: "Writer", path: "/#writer" },
   { title: "Lists", path: "/#lists" },
   { title: "Contact", path: "/#contact" },

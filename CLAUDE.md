@@ -31,6 +31,9 @@ pnpm run lint         # Run ESLint
 - `src/app/components/Utilities/EmailSection.tsx` - Contact form (posts to `/api/send`)
 - `src/lib/archidekt.ts` - Archidekt folder fetch + snapshot fallback for the deck grid
 - `src/app/components/Mtg/MtgSection.tsx` - "Commander Decks" section (`#gamer` on the home page)
+- `src/app/components/Tavern/TavernSection.tsx` - TableTopTavern store inventory (`#tavern` on the home page)
+- `data/tavern-inventory.json` - Hand-maintained list of store listings; `pnpm snapshot:tavern` resolves it against Scryfall and SWU-DB into `data/tavern-snapshot.json`, which the section reads
+- `scripts/check-tavern-prices.mjs` - Daily market-price check that emails an alert on big moves (run by `.github/workflows/tavern-price-check.yml`)
 
 ### Client/Server Boundaries
 Most components are client components (`"use client"` directive) for interactivity. The API route (`src/app/api/send/route.tsx`) handles server-side email sending.
@@ -55,6 +58,16 @@ Archidekt API needs no key, and the deck grid falls back to
 The `NEXT_PUBLIC_SUPABASE_*` vars power the `/mail` email client (Supabase
 Auth + database). When absent, the app still builds and `/mail` shows a
 "not configured" notice.
+
+### Tavern price alerts
+
+TCGplayer has no public API, so the store inventory is edited by hand in
+`data/tavern-inventory.json` (run `pnpm snapshot:tavern` afterwards). The
+price-check workflow reads its settings from GitHub Actions secrets:
+`RESEND_API_KEY`, `FROM_EMAIL` and `TAVERN_ALERT_TO` (the address alerts go
+to; keep it out of the repo). Price history is kept in the Actions cache, not
+in git. Thresholds live in `scripts/lib/tavern-alerts.mjs`. To try it locally
+without sending anything: `TAVERN_DRY_RUN=true pnpm tavern:prices`.
 
 ## Conventions
 
