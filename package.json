@@ -13,6 +13,8 @@
     "snapshot:spotify": "node scripts/snapshot-spotify.mjs",
     "snapshot:archidekt": "node scripts/snapshot-archidekt.mjs",
     "snapshot:blog": "node scripts/snapshot-blog.mjs",
+    "snapshot:tavern": "node scripts/snapshot-tavern.mjs",
+    "tavern:prices": "node scripts/check-tavern-prices.mjs",
     "docker:local": "bash scripts/docker-local.sh"
   },
   "dependencies": {
