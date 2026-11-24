@@ -45,10 +45,34 @@ function isPubliclyViewable(deck: any): boolean {
   return !deck.private && !deck.unlisted;
 }
 
+const FETCH_TIMEOUT_MS = 8000;
+const FETCH_ATTEMPTS = 2;
+
+/**
+ * The folder request runs while the page is built, and one slow or dropped
+ * response there would bake the (older) snapshot into the site until the next
+ * revalidation. A timeout plus a single retry makes that much less likely.
+ */
+async function fetchFolder(folderId: string): Promise<Response> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(`${API_BASE}/decks/folders/${folderId}/`, {
+        next: { revalidate: 3600 },
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      });
+      // Client errors won't change on a retry; server errors might.
+      if (res.ok || res.status < 500 || attempt === FETCH_ATTEMPTS) return res;
+    } catch (err) {
+      lastError = err;
+      if (attempt === FETCH_ATTEMPTS) throw err;
+    }
+  }
+  throw lastError;
+}
+
 export async function fetchFolderDecks(folderId = getFolderId()): Promise<MtgDeck[]> {
-  const res = await fetch(`${API_BASE}/decks/folders/${folderId}/`, {
-    next: { revalidate: 3600 },
-  });
+  const res = await fetchFolder(folderId);
   if (!res.ok) {
     const body = await res.text().catch(() => '');
     throw new Error(`Archidekt API error: ${res.status} ${body}`);
