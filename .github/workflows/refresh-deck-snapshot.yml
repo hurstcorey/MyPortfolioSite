@@ -1,0 +1,65 @@
+name: Refresh deck snapshot
+
+# Keeps data/decks-snapshot.json (the fallback for the Commander deck grid)
+# in step with the public Archidekt folder. `development` only accepts pull
+# requests, so a change is proposed as one PR on a fixed branch that later
+# runs update rather than duplicate.
+
+on:
+  schedule:
+    # Daily at 13:00 UTC. Scheduled runs only fire from the default branch.
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-deck-snapshot
+  cancel-in-progress: false
+
+env:
+  BRANCH: chore/refresh-deck-snapshot
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The script needs only Node built-ins, plus dotenv when a .env file is
+      # present, so it runs without a dependency install.
+      - name: Refresh snapshot
+        run: node scripts/snapshot-archidekt.mjs
+
+      - name: Open or update the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/decks-snapshot.json; then
+            echo "Snapshot unchanged; nothing to propose."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data/decks-snapshot.json
+          git commit -m "Refresh Archidekt deck snapshot"
+          git push --force origin "$BRANCH"
+
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create \
+              --base "${{ github.event.repository.default_branch }}" \
+              --head "$BRANCH" \
+              --title "Refresh Archidekt deck snapshot" \
+              --body "Automated daily refresh of \`data/decks-snapshot.json\` from the public Archidekt folder. The site reads Archidekt live; this file is only the fallback."
+          fi

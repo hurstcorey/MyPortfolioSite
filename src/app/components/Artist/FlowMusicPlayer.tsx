@@ -6,6 +6,13 @@ const SONGS = [
   { id: "cf8232d4-266a-4511-bfe2-fd6459bdb1ec", title: "Hold The Space (Focus Mix)" },
   { id: "476f9218-03a7-41c2-980b-8d7fd6c1d9d7", title: "FastLofi" },
   { id: "40548315-18f9-4c83-ba1a-c56169b25ccd", title: "Leave The Heavy Behind (Pop-Remix)" },
+  { id: "ee65d56b-0f4b-4f8a-9300-28a2941a494c", title: "Moonlit Dreams" },
+  { id: "4f0d74a2-f6b5-49fb-b546-77eb608233de", title: "Electric Meow (Meow Vocal Mix)" },
+  { id: "9d43dd74-d32d-4baf-9f22-54aedc0e72da", title: "Step Out (V1)" },
+  { id: "c4fdaf5b-15be-496e-98e2-48d1c64d455f", title: "Amazing Man (Thai Female Vocal)" },
+  { id: "fa6536bf-aa63-4510-b410-7e82f78860d3", title: "Cleeco's Jazz Inferno (Remix)" },
+  { id: "97600007-7cd7-48e1-9b95-78f1b681678d", title: "Thai Paradise" },
+  { id: "23380a15-c229-4db8-8607-e41ca66290b5", title: "The High Ground" },
 ];
 
 export default function FlowMusicPlayer() {
@@ -116,7 +123,7 @@ export default function FlowMusicPlayer() {
                 className="w-full h-10 [filter:invert(1)_hue-rotate(180deg)_brightness(1.5)_contrast(1.2)]"
                 crossOrigin="anonymous"
               >
-                <source src={audioUrl} type="audio/mpeg" />
+                <source src={audioUrl} type="audio/mp4" />
               </audio>
             </div>
 
