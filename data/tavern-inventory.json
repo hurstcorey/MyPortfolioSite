@@ -1,0 +1,29 @@
+{
+  "sellerId": "47076537",
+  "items": [
+    { "game": "mtg", "tcgplayerId": 575095, "name": "Valgavoth, Harrower of Souls (Borderless)", "finish": "nonfoil", "listPrice": 50.0 },
+    { "game": "mtg", "tcgplayerId": 528287, "name": "Mycosynth Lattice (Rainbow Foil)", "finish": "foil", "listPrice": 45.95 },
+    { "game": "mtg", "tcgplayerId": 707075, "name": "Galadriel's Dismissal (Borderless)", "finish": "nonfoil", "listPrice": 35.2 },
+    { "game": "mtg", "tcgplayerId": 558355, "name": "Three Tree City", "finish": "nonfoil", "listPrice": 30.0 },
+    { "game": "swu", "tcgplayerId": 678244, "set": "LAW", "number": "086", "name": "The Stranger - No Survivors", "finish": "nonfoil", "listPrice": 17.39 },
+    { "game": "swu", "tcgplayerId": 678655, "set": "LAW", "number": "224", "name": "Liberty - Draw Their Fire!", "finish": "nonfoil", "listPrice": 12.15 },
+    { "game": "mtg", "tcgplayerId": 717734, "name": "Reflecting Pool", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 707517, "name": "Orcrist, Goblin-cleaver", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 696299, "name": "Thor, God of Thunder", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 630862, "name": "The Darkness Crystal", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 630988, "name": "Absolute Virtue", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 671172, "name": "Springleaf Parade", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 687556, "name": "Ozolith, the Shattered Spire", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 579064, "name": "Professor Onyx", "finish": "nonfoil", "listPrice": 10.0 },
+    { "game": "mtg", "tcgplayerId": 633117, "name": "The Wind Crystal", "finish": "nonfoil", "listPrice": 9.99 },
+    { "game": "mtg", "tcgplayerId": 688651, "name": "Erode", "finish": "nonfoil", "listPrice": 9.15 },
+    { "game": "mtg", "tcgplayerId": 633131, "name": "The Fire Crystal", "finish": "nonfoil", "listPrice": 7.95 },
+    { "game": "mtg", "tcgplayerId": 642113, "name": "Adagia, Windswept Bastion", "finish": "nonfoil", "listPrice": 7.15 },
+    { "game": "mtg", "tcgplayerId": 539859, "name": "Black Market", "finish": "nonfoil", "listPrice": 7.0 },
+    { "game": "mtg", "tcgplayerId": 267054, "name": "Spire Garden", "finish": "nonfoil", "listPrice": 6.4 },
+    { "game": "mtg", "tcgplayerId": 633123, "name": "The Water Crystal", "finish": "nonfoil", "listPrice": 5.0 },
+    { "game": "mtg", "tcgplayerId": 540659, "name": "Pitiless Plunderer", "finish": "nonfoil", "listPrice": 5.0 },
+    { "game": "mtg", "tcgplayerId": 139948, "name": "Fist of Suns", "finish": "nonfoil", "listPrice": 5.0 },
+    { "game": "mtg", "tcgplayerId": 223546, "name": "Cragcrown Pathway", "finish": "foil", "listPrice": 5.0 }
+  ]
+}

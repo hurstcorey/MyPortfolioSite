@@ -7,7 +7,7 @@ frontend:
         - nvm use 22
         - node -v
         - corepack enable && corepack prepare pnpm@8.8.0 --activate
-        - pnpm install --no-frozen-lockfile
+        - pnpm install --frozen-lockfile
     build:
       commands:
         - pnpm run build

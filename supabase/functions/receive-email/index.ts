@@ -55,7 +55,50 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
 
   return signatureHeader
     .split(" ")
-    .some((part) => part.split(",")[1] === expected);
+    .some((part) => timingSafeEqual(part.split(",")[1] ?? "", expected));
+}
+
+// Length-independent comparison so signature checks don't leak match progress.
+function timingSafeEqual(a: string, b: string): boolean {
+  const aBytes = encoder.encode(a);
+  const bBytes = encoder.encode(b);
+  let diff = aBytes.length ^ bBytes.length;
+  for (let i = 0; i < bBytes.length; i++) {
+    diff |= (aBytes[i] ?? 0) ^ bBytes[i];
+  }
+  return diff === 0;
+}
+
+const MAX_BODY_BYTES = 5 * 1024 * 1024;
+
+// Reads the request body as UTF-8 text, counting wire bytes as they stream in
+// and cancelling as soon as the cap is crossed, so an oversized body (with or
+// without a Content-Length) is never fully buffered. Returns null when over.
+async function readBodyWithLimit(
+  req: Request,
+  maxBytes: number,
+): Promise<string | null> {
+  if (!req.body) return "";
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
 }
 
 // Accepts either an address string ("Name <a@b.com>" or "a@b.com") or an
@@ -75,7 +118,15 @@ Deno.serve(async (req) => {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  const rawBody = await req.text();
+  const declaredLength = Number(req.headers.get("content-length") ?? 0);
+  if (declaredLength > MAX_BODY_BYTES) {
+    return new Response("Payload too large", { status: 413 });
+  }
+
+  const rawBody = await readBodyWithLimit(req, MAX_BODY_BYTES);
+  if (rawBody === null) {
+    return new Response("Payload too large", { status: 413 });
+  }
 
   if (!(await verifySignature(req, rawBody))) {
     return new Response("Invalid signature", { status: 401 });

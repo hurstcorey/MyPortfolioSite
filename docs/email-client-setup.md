@@ -38,6 +38,7 @@ After the records propagate, trigger verification from the Resend dashboard
 | `RESEND_API_KEY`        | Create in Resend dashboard (sending access is enough)  |
 | `FROM_EMAIL`            | `corey@cohurst.co`                                     |
 | `RESEND_WEBHOOK_SECRET` | The `whsec_...` signing secret shown once when the webhook was created |
+| `ALLOWED_ORIGINS`       | Optional. Comma-separated site origins allowed to call `send-email` from a browser (e.g. `https://www.example.com`). Unset keeps `*`. |
 
 ## Frontend env (`.env.local` + Amplify environment variables)
 
@@ -51,7 +52,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key from Dashboard → Settings → API>
 1. Authentication → Users → Add user: your email + password, auto-confirm.
 2. Authentication → Sign In / Providers → disable "Allow new users to sign
    up" (the RLS policies trust any authenticated user, so signups must stay
-   closed).
+   closed). Migration `20261030000000_pin_owner_rls.sql` additionally pins the
+   policies to the single owner account (it aborts unless exactly one user exists).
 
 ## Notes
 

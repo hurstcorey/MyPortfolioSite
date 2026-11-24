@@ -5,6 +5,7 @@ import AchievementsSection from "./components/AboutMe/AchievementsSection";
 import ProjectsSection from "./components/Projects/ProjectsSection";
 import ListsPreview from "./components/Lists/ListsPreview";
 import MtgSection from "./components/Mtg/MtgSection";
+import TavernSection from "./components/Tavern/TavernSection";
 import WriterSection from "./components/Writer/WriterSection";
 import ArtistSection from "./components/Artist/ArtistSection";
 import EmailSection from "./components/Utilities/EmailSection";
@@ -21,6 +22,7 @@ export default function Home() {
         <ProjectsSection />
         <ArtistSection />
         <MtgSection />
+        <TavernSection />
         <WriterSection />
         <ListsPreview />
         <EmailSection />

@@ -15,16 +15,16 @@
 //                 thread_id?: string (uuid) }
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { corsHeaders } from "../_shared/cors.ts";
-
-function json(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
-  });
-}
+import { corsHeadersFor } from "../_shared/cors.ts";
 
 Deno.serve(async (req) => {
+  const corsHeaders = corsHeadersFor(req);
+  const json = (body: unknown, status = 200): Response =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
@@ -67,6 +67,16 @@ Deno.serve(async (req) => {
       { error: "Required: to, subject, and text and/or html" },
       400,
     );
+  }
+  if (
+    typeof to !== "string" ||
+    to.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to) ||
+    typeof subject !== "string" ||
+    subject.length > 998 ||
+    /[\r\n]/.test(subject)
+  ) {
+    return json({ error: "Invalid to or subject" }, 400);
   }
 
   const fromEmail = Deno.env.get("FROM_EMAIL");

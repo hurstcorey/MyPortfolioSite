@@ -1,0 +1,51 @@
+name: Tavern price check
+
+on:
+  schedule:
+    # Daily at 14:00 UTC. Scheduled runs only fire from the default branch.
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Print the alert email instead of sending it (history is not updated)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tavern-price-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The price history lives in the Actions cache rather than the repo. A
+      # cache key can't be overwritten, so each run saves under its own id and
+      # restores the newest one.
+      - name: Restore price history
+        uses: actions/cache@v4
+        with:
+          path: .cache/tavern-price-history.json
+          key: tavern-price-history-${{ github.run_id }}
+          restore-keys: |
+            tavern-price-history-
+
+      - name: Check prices
+        run: node scripts/check-tavern-prices.mjs
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          TAVERN_ALERT_TO: ${{ secrets.TAVERN_ALERT_TO }}
+          TAVERN_DRY_RUN: ${{ inputs.dry_run }}
