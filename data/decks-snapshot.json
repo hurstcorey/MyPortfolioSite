@@ -1,15 +1,303 @@
 {
-  "snapshotAt": "2026-08-31T02:52:30.271Z",
+  "snapshotAt": "2026-11-24T02:10:55.463Z",
   "folderId": "1708348",
   "decks": [
+    {
+      "id": 28665376,
+      "name": "Glissening v3",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/9/e/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/9/e/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21.webp",
+      "deckUrl": "https://archidekt.com/decks/28665376",
+      "updatedAt": "2026-11-24T01:14:54.491631Z"
+    },
+    {
+      "id": 28650527,
+      "name": "Space, The Final Frontier",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/6/1/6133355c-3dcf-466a-b771-fe6c44d4fa4d.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/6/1/6133355c-3dcf-466a-b771-fe6c44d4fa4d.webp",
+      "deckUrl": "https://archidekt.com/decks/28650527",
+      "updatedAt": "2026-11-23T15:57:00.309003Z"
+    },
+    {
+      "id": 28637262,
+      "name": "RockyPictureHorrorShow",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/a/5/a5d57db6-0aa5-4e28-b156-e97b74af2cee.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/a/5/a5d57db6-0aa5-4e28-b156-e97b74af2cee.webp",
+      "deckUrl": "https://archidekt.com/decks/28637262",
+      "updatedAt": "2026-11-23T02:42:59.858928Z"
+    },
+    {
+      "id": 28583580,
+      "name": "Unlimited Energy",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.webp",
+      "deckUrl": "https://archidekt.com/decks/28583580",
+      "updatedAt": "2026-11-21T05:27:42.633330Z"
+    },
+    {
+      "id": 28583004,
+      "name": "Vamps",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/a/5/a577ba08-0aa8-45be-aa83-d5078770127c.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/a/5/a577ba08-0aa8-45be-aa83-d5078770127c.webp",
+      "deckUrl": "https://archidekt.com/decks/28583004",
+      "updatedAt": "2026-11-21T05:01:42.106347Z"
+    },
+    {
+      "id": 28582968,
+      "name": "Boots meant for Walking",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/6/8/6800e935-d327-464c-ab88-7c0193827da3.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/6/8/6800e935-d327-464c-ab88-7c0193827da3.webp",
+      "deckUrl": "https://archidekt.com/decks/28582968",
+      "updatedAt": "2026-11-21T04:57:46.062450Z"
+    },
+    {
+      "id": 28553522,
+      "name": "Queen of Attrition",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/3/2/3242a9f0-2ba3-4852-ac8f-366772ac1c62.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/3/2/3242a9f0-2ba3-4852-ac8f-366772ac1c62.webp",
+      "deckUrl": "https://archidekt.com/decks/28553522",
+      "updatedAt": "2026-11-20T03:25:45.913973Z"
+    },
+    {
+      "id": 28497443,
+      "name": "Copy of - Whenever An Opponent",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/e/6/e669c0b2-0011-4feb-9263-f1ecc0a98f18.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/e/6/e669c0b2-0011-4feb-9263-f1ecc0a98f18.webp",
+      "deckUrl": "https://archidekt.com/decks/28497443",
+      "updatedAt": "2026-11-18T04:09:29.168156Z"
+    },
+    {
+      "id": 28416069,
+      "name": "R&D Engine v8",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/8/f/8f95f753-bbaa-4282-9cd9-f1737136fc9e.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/8/f/8f95f753-bbaa-4282-9cd9-f1737136fc9e.webp",
+      "deckUrl": "https://archidekt.com/decks/28416069",
+      "updatedAt": "2026-11-16T01:09:06.670846Z"
+    },
+    {
+      "id": 28417867,
+      "name": "Alania, Anotter one!",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/4/3/436d6a84-4cea-4ca7-94aa-9d08280652af.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/4/3/436d6a84-4cea-4ca7-94aa-9d08280652af.webp",
+      "deckUrl": "https://archidekt.com/decks/28417867",
+      "updatedAt": "2026-11-15T18:29:27.670900Z"
+    },
+    {
+      "id": 28417235,
+      "name": "Astor, Bearer of Artifacts",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/4/0/40f3a0ba-b917-488b-adbf-60a0d3c58a56.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/4/0/40f3a0ba-b917-488b-adbf-60a0d3c58a56.webp",
+      "deckUrl": "https://archidekt.com/decks/28417235",
+      "updatedAt": "2026-11-15T18:06:47.113389Z"
+    },
+    {
+      "id": 28417132,
+      "name": "Cats with Claws",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/8/1/81dc3d00-97cd-4549-b5a4-15a1e08767f5.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/8/1/81dc3d00-97cd-4549-b5a4-15a1e08767f5.webp",
+      "deckUrl": "https://archidekt.com/decks/28417132",
+      "updatedAt": "2026-11-15T18:03:12.402594Z"
+    },
+    {
+      "id": 28417022,
+      "name": "Kenrith, The King giveth",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/0/e/0e259db1-14db-4314-998c-6a076a28d8cb.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/0/e/0e259db1-14db-4314-998c-6a076a28d8cb.webp",
+      "deckUrl": "https://archidekt.com/decks/28417022",
+      "updatedAt": "2026-11-15T17:59:26.797967Z"
+    },
+    {
+      "id": 26689000,
+      "name": "Partners for Life",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/2/1/21e27b91-c7f1-4709-aa0d-8b5d81b22a0a.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/2/1/21e27b91-c7f1-4709-aa0d-8b5d81b22a0a.webp",
+      "deckUrl": "https://archidekt.com/decks/26689000",
+      "updatedAt": "2026-11-15T17:54:45.879832Z"
+    },
+    {
+      "id": 28415538,
+      "name": "Omnath, Locus of Creation",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/a/2/a2ff2fc2-306f-4d72-8dce-265a814630bc.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/a/2/a2ff2fc2-306f-4d72-8dce-265a814630bc.webp",
+      "deckUrl": "https://archidekt.com/decks/28415538",
+      "updatedAt": "2026-11-15T17:02:27.288135Z"
+    },
+    {
+      "id": 28414352,
+      "name": "Jace, Omega Planewalker",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/5/5/55cd03d9-2535-4cf3-a8b2-1418e1190f4a.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/5/5/55cd03d9-2535-4cf3-a8b2-1418e1190f4a.webp",
+      "deckUrl": "https://archidekt.com/decks/28414352",
+      "updatedAt": "2026-11-15T16:55:03.441445Z"
+    },
+    {
+      "id": 26555101,
+      "name": "Jeskai Energy",
+      "size": 97,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/3/b/3b964bbe-54cc-425c-9cc6-c877f82af7ba.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/3/b/3b964bbe-54cc-425c-9cc6-c877f82af7ba.webp",
+      "deckUrl": "https://archidekt.com/decks/26555101",
+      "updatedAt": "2026-11-15T13:58:57.616363Z"
+    },
+    {
+      "id": 27746651,
+      "name": "Anikthea Enchanted Death",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/cmm/8b796a56-1611-4835-ac5b-48b4e9263685_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/cmm/8b796a56-1611-4835-ac5b-48b4e9263685_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/27746651",
+      "updatedAt": "2026-10-24T14:51:06.872197Z"
+    },
+    {
+      "id": 27666446,
+      "name": "Selvala, Wild Child",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/8/1/812856be-cf51-42de-96d2-4ac91e71d442.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/8/1/812856be-cf51-42de-96d2-4ac91e71d442.webp",
+      "deckUrl": "https://archidekt.com/decks/27666446",
+      "updatedAt": "2026-10-21T21:49:35.776987Z"
+    },
+    {
+      "id": 27631116,
+      "name": "Red Dwarf Sun",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/b/8/b8e8c669-5aa3-45ee-be01-b94c672cdf49.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/b/8/b8e8c669-5aa3-45ee-be01-b94c672cdf49.webp",
+      "deckUrl": "https://archidekt.com/decks/27631116",
+      "updatedAt": "2026-10-20T19:52:08.575979Z"
+    },
+    {
+      "id": 27631060,
+      "name": "Urza, Dank Artificer",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/7/b/7b7a348a-51f7-4dc5-8fe7-1c70fea5e050.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/7/b/7b7a348a-51f7-4dc5-8fe7-1c70fea5e050.webp",
+      "deckUrl": "https://archidekt.com/decks/27631060",
+      "updatedAt": "2026-10-20T19:50:20.016095Z"
+    },
+    {
+      "id": 27630762,
+      "name": "Yaw Dog - First Aristocrat",
+      "size": 97,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/4/e/4ef603c2-b09c-40e9-b3ab-fceb4964aafd.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/4/e/4ef603c2-b09c-40e9-b3ab-fceb4964aafd.webp",
+      "deckUrl": "https://archidekt.com/decks/27630762",
+      "updatedAt": "2026-10-20T19:47:46.206392Z"
+    },
+    {
+      "id": 26048518,
+      "name": "A \"Commander\" Commander Deck",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/c16/a3d8d64f-a403-42a7-881b-4f70e9fe15a2_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/c16/a3d8d64f-a403-42a7-881b-4f70e9fe15a2_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/26048518",
+      "updatedAt": "2026-10-13T20:51:56.879717Z"
+    },
+    {
+      "id": 27047407,
+      "name": "Heliod Budget Gains",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/3/2/3245ff74-1f9c-4518-a23f-1579f338f232.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/3/2/3245ff74-1f9c-4518-a23f-1579f338f232.webp",
+      "deckUrl": "https://archidekt.com/decks/27047407",
+      "updatedAt": "2026-10-12T17:22:30.609640Z"
+    },
+    {
+      "id": 26261602,
+      "name": "GruulGas",
+      "size": 100,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/cmr/90c51949-b1ef-4c6e-98b0-4fb33a81db24_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/cmr/90c51949-b1ef-4c6e-98b0-4fb33a81db24_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/26261602",
+      "updatedAt": "2026-10-06T12:55:40.153972Z"
+    },
+    {
+      "id": 25560564,
+      "name": "Twins",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/5/a/5a052dd2-6b5e-4f50-b481-7eee3d63a221.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/5/a/5a052dd2-6b5e-4f50-b481-7eee3d63a221.webp",
+      "deckUrl": "https://archidekt.com/decks/25560564",
+      "updatedAt": "2026-10-06T12:55:00.249871Z"
+    },
+    {
+      "id": 24228239,
+      "name": "Passive Aggressive",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/9/2/92e0c1a4-e6f3-494d-9238-913af54dbffb.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/9/2/92e0c1a4-e6f3-494d-9238-913af54dbffb.webp",
+      "deckUrl": "https://archidekt.com/decks/24228239",
+      "updatedAt": "2026-10-06T12:51:16.543034Z"
+    },
+    {
+      "id": 26926601,
+      "name": "Careful What You Wish",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/b/2/b238485f-ef67-4295-892b-a10235368f74.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/b/2/b238485f-ef67-4295-892b-a10235368f74.webp",
+      "deckUrl": "https://archidekt.com/decks/26926601",
+      "updatedAt": "2026-10-01T09:49:58.650245Z"
+    },
+    {
+      "id": 26784270,
+      "name": "Rakdos - No Pain, No Gain",
+      "size": 100,
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/3/d/3d0d5a41-8251-437c-a4a0-3b712281ebb0.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/3/d/3d0d5a41-8251-437c-a4a0-3b712281ebb0.webp",
+      "deckUrl": "https://archidekt.com/decks/26784270",
+      "updatedAt": "2026-09-27T22:11:17.563872Z"
+    },
     {
       "id": 25591247,
       "name": "The Accuser",
       "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/2ef59aa9-f5e1-413a-869b-d287db95efd0_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/2ef59aa9-f5e1-413a-869b-d287db95efd0_art_crop.jpg",
+      "cardImageUrl": "https://card-images.archidekt.com/art/front/b/c/bc3e8132-676f-4597-b3c7-1d84b8561f24.webp",
+      "artCropUrl": "https://card-images.archidekt.com/art/front/b/c/bc3e8132-676f-4597-b3c7-1d84b8561f24.webp",
       "deckUrl": "https://archidekt.com/decks/25591247",
-      "updatedAt": "2026-08-29T14:05:53.397495Z"
+      "updatedAt": "2026-09-23T01:24:27.546587Z"
+    },
+    {
+      "id": 26416210,
+      "name": "Copy of - Sisay, My Legendary Captain - Backgrounds",
+      "size": 98,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/sld/f7bdcb20-219c-4175-8600-a946d83210e0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/sld/f7bdcb20-219c-4175-8600-a946d83210e0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/26416210",
+      "updatedAt": "2026-09-15T14:55:39.903945Z"
+    },
+    {
+      "id": 26363560,
+      "name": "Sisay, My Legendary Captain",
+      "size": 71,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/sld/f7bdcb20-219c-4175-8600-a946d83210e0_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/sld/f7bdcb20-219c-4175-8600-a946d83210e0_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/26363560",
+      "updatedAt": "2026-09-15T14:44:13.947710Z"
+    },
+    {
+      "id": 25048446,
+      "name": "Sefris",
+      "size": 96,
+      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/sld/5476a08d-7826-4b5b-90b8-56013273a189_normal.jpg",
+      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/sld/5476a08d-7826-4b5b-90b8-56013273a189_art_crop.jpg",
+      "deckUrl": "https://archidekt.com/decks/25048446",
+      "updatedAt": "2026-09-01T21:47:38.359294Z"
     },
     {
       "id": 25636565,
@@ -28,24 +316,6 @@
       "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/ncc/ee228dcc-3170-4c24-80bc-28bcee07cb43_art_crop.jpg",
       "deckUrl": "https://archidekt.com/decks/25174265",
       "updatedAt": "2026-08-23T19:28:10.864934Z"
-    },
-    {
-      "id": 25560564,
-      "name": "Twins",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/b9c11061-bb34-4904-b9f1-ea106b517bbe_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/b9c11061-bb34-4904-b9f1-ea106b517bbe_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/25560564",
-      "updatedAt": "2026-08-20T16:41:06.586132Z"
-    },
-    {
-      "id": 25048446,
-      "name": "Sefris",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/oafc/87464c37-09cf-4fc7-ad71-9c35c3b7ff76_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/oafc/87464c37-09cf-4fc7-ad71-9c35c3b7ff76_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/25048446",
-      "updatedAt": "2026-08-07T17:15:06.890458Z"
     },
     {
       "id": 25077890,
@@ -93,33 +363,6 @@
       "updatedAt": "2026-07-24T17:24:34.617487Z"
     },
     {
-      "id": 24636831,
-      "name": "Rakdos - No Pain, No Gain v2",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/24636831",
-      "updatedAt": "2026-07-24T17:20:14.554224Z"
-    },
-    {
-      "id": 24608659,
-      "name": "Glisstening v2",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/mbs/755e0fbf-4f00-4b05-a535-27e78e96d6b6_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mbs/755e0fbf-4f00-4b05-a535-27e78e96d6b6_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/24608659",
-      "updatedAt": "2026-07-23T03:24:11.705803Z"
-    },
-    {
-      "id": 24521590,
-      "name": "Glisstening",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/pmbs/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/pmbs/9e293b2d-5eae-43c3-bb1f-4c0ed2b0bd21_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/24521590",
-      "updatedAt": "2026-07-23T02:26:59.826369Z"
-    },
-    {
       "id": 24575208,
       "name": "Mister Negative | Game Knights #80",
       "size": 100,
@@ -156,15 +399,6 @@
       "updatedAt": "2026-07-11T00:51:28.839384Z"
     },
     {
-      "id": 24228239,
-      "name": "Passive Aggressive",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/cm2/2e89ce6a-6bc9-427f-a8b2-c07a9fc3218f_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/cm2/2e89ce6a-6bc9-427f-a8b2-c07a9fc3218f_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/24228239",
-      "updatedAt": "2026-07-10T03:03:17.988665Z"
-    },
-    {
       "id": 24200463,
       "name": "Sefris of the Hidden Dungeon Ways",
       "size": 100,
@@ -190,15 +424,6 @@
       "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/mkc/ae9ccfec-05c6-469e-b1dd-dfbafa1e927f_art_crop.jpg",
       "deckUrl": "https://archidekt.com/decks/24137634",
       "updatedAt": "2026-07-08T12:05:22.589864Z"
-    },
-    {
-      "id": 24121237,
-      "name": "Rakdos - No Pain, No Gain",
-      "size": 100,
-      "cardImageUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_normal.jpg",
-      "artCropUrl": "https://storage.googleapis.com/archidekt-card-images/dsc/3d0d5a41-8251-437c-a4a0-3b712281ebb0_art_crop.jpg",
-      "deckUrl": "https://archidekt.com/decks/24121237",
-      "updatedAt": "2026-07-08T01:43:01.134936Z"
     }
   ]
 }

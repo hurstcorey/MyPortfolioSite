@@ -1,7 +1,9 @@
-import 'dotenv/config';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// Load .env when dotenv is installed; scheduled runs have no install step.
+await import('dotenv/config').catch(() => {});
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -40,6 +42,24 @@ async function main() {
       };
     })
     .sort((a, b) => (b.updatedAt > a.updatedAt ? 1 : -1));
+
+  // The snapshot is only a fallback, so a deck merely being edited (new
+  // updatedAt) is not worth a new commit. Compare everything else.
+  const identity = (list) =>
+    JSON.stringify(
+      list
+        .map(({ updatedAt, ...rest }) => rest)
+        .sort((a, b) => a.id - b.id),
+    );
+  try {
+    const existing = JSON.parse(await fs.readFile(OUTPUT, 'utf-8'));
+    if (existing.folderId === FOLDER_ID && identity(existing.decks) === identity(decks)) {
+      console.log(`\n✓ Snapshot already current (${decks.length} decks); nothing to write.`);
+      return;
+    }
+  } catch {
+    // No usable snapshot yet; write one below.
+  }
 
   const snapshot = {
     snapshotAt: new Date().toISOString(),

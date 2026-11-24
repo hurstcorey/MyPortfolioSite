@@ -106,6 +106,26 @@ describe('fetchFolderDecks', () => {
     await expect(fetchFolderDecks('1708348')).resolves.toEqual([]);
   });
 
+  it('retries once when the first request fails', async () => {
+    vi.mocked(global.fetch)
+      .mockRejectedValueOnce(new Error('timeout'))
+      .mockResolvedValueOnce({ ok: true, json: async () => SAMPLE_RESPONSE } as Response);
+
+    await expect(fetchFolderDecks('1708348')).resolves.toHaveLength(2);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not retry client errors', async () => {
+    vi.mocked(global.fetch).mockResolvedValue({
+      ok: false,
+      status: 404,
+      text: async () => 'Not Found',
+    } as Response);
+
+    await expect(fetchFolderDecks('1708348')).rejects.toThrow('404');
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
   it('throws when the API responds with an error', async () => {
     vi.mocked(global.fetch).mockResolvedValue({
       ok: false,
